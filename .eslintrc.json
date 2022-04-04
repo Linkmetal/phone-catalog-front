@@ -1,0 +1,38 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["prettier", "plugin:@typescript-eslint/recommended", "plugin:react/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["testing-library", "jest-dom", "@typescript-eslint", "react"],
+  "overrides": [
+    {
+      "files": ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(spec|test).[jt]s?(x)"],
+      "extends": ["plugin:testing-library/react", "plugin:jest-dom/recommended"]
+    }
+  ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"],
+        "extensions": [".js", ".ts", ".tsx"]
+      }
+    },
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "@typescript-eslint/no-namespace": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/display-name": "off"
+  }
+}

@@ -100,23 +100,23 @@ export const {
     light: '(prefers-color-scheme: light)',
   },
   utils: {
-    size: (value: any) => ({
+    size: (value: string) => ({
       width: value,
       height: value,
     }),
-    paddingX: (value: any) => ({
+    paddingX: (value: string) => ({
       paddingLeft: value,
       paddingRight: value,
     }),
-    paddingY: (value: any) => ({
+    paddingY: (value: string) => ({
       paddingTop: value,
       paddingBottom: value,
     }),
-    marginX: (value: any) => ({
+    marginX: (value: string) => ({
       marginLeft: value,
       marginRight: value,
     }),
-    marginY: (value: any) => ({
+    marginY: (value: string) => ({
       marginTop: value,
       marginBottom: value,
     }),
