@@ -1,5 +1,43 @@
 import { createStitches } from '@stitches/react'
 
+const gradients = {
+  'gradient-top':
+    'linear-gradient(0deg, #006466ff, #065a60ff, #0b525bff, #144552ff, #1b3a4bff, #212f45ff, #272640ff, #312244ff, #3e1f47ff, #4d194dff)',
+  'gradient-right':
+    'linear-gradient(90deg, #006466ff, #065a60ff, #0b525bff, #144552ff, #1b3a4bff, #212f45ff, #272640ff, #312244ff, #3e1f47ff, #4d194dff)',
+  'gradient-bottom':
+    'linear-gradient(180deg, #006466ff, #065a60ff, #0b525bff, #144552ff, #1b3a4bff, #212f45ff, #272640ff, #312244ff, #3e1f47ff, #4d194dff)',
+  'gradient-left':
+    'linear-gradient(270deg, #006466ff, #065a60ff, #0b525bff, #144552ff, #1b3a4bff, #212f45ff, #272640ff, #312244ff, #3e1f47ff, #4d194dff)',
+  'gradient-top-right':
+    'linear-gradient(45deg, #006466ff, #065a60ff, #0b525bff, #144552ff, #1b3a4bff, #212f45ff, #272640ff, #312244ff, #3e1f47ff, #4d194dff)',
+  'gradient-bottom-right':
+    'linear-gradient(135deg, #006466ff, #065a60ff, #0b525bff, #144552ff, #1b3a4bff, #212f45ff, #272640ff, #312244ff, #3e1f47ff, #4d194dff)',
+  'gradient-top-left':
+    'linear-gradient(225deg, #006466ff, #065a60ff, #0b525bff, #144552ff, #1b3a4bff, #212f45ff, #272640ff, #312244ff, #3e1f47ff, #4d194dff)',
+  'gradient-bottom-left':
+    'linear-gradient(315deg, #006466ff, #065a60ff, #0b525bff, #144552ff, #1b3a4bff, #212f45ff, #272640ff, #312244ff, #3e1f47ff, #4d194dff)',
+  'gradient-radial':
+    'radial-gradient(#006466ff, #065a60ff, #0b525bff, #144552ff, #1b3a4bff, #212f45ff, #272640ff, #312244ff, #3e1f47ff, #4d194dff)',
+}
+
+export const colors = {
+  'primary-100': '#006466ff',
+  'primary-200': '#065a60ff',
+  'primary-300': '#0b525bff',
+  'primary-400': '#144552ff',
+  'primary-500': '#1b3a4bff',
+  'secondary-100': '#272640ff',
+  'secondary-200': '#312244ff',
+  'secondary-300': '#3e1f47ff',
+  'secondary-400': '#4d194dff',
+
+  'white-100': '#ffffffff',
+  'text-default': '#26282e',
+}
+
+export type ColorTokens = keyof typeof colors
+
 export const {
   styled,
   css,
@@ -10,7 +48,8 @@ export const {
   keyframes,
 } = createStitches({
   theme: {
-    colors: {},
+    colors,
+    gradients,
     space: {
       0: '0px',
       1: '4px',
@@ -152,6 +191,5 @@ export const globalStyles = stitchesGlobal({
   ':root': {},
 })
 
-export type ColorTokens = keyof typeof theme.colors
 export type SizeTokens = keyof typeof theme.sizes
 export type SpaceTokens = keyof typeof theme.space
