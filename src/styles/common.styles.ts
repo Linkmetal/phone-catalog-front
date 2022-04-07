@@ -12,7 +12,9 @@ export const FlexContainer = styled('div', {
     direction: {
       row: {
         flexDirection: 'row',
-        alignItems: 'center',
+      },
+      column: {
+        flexDirection: 'column',
       },
     },
     wrap: {
@@ -60,4 +62,10 @@ export const FlexContainer = styled('div', {
     justify: 'center',
     align: 'center',
   },
+})
+
+export const Card = styled(FlexContainer, {
+  borderRadius: '$2',
+  backgroundColor: '$white-100',
+  boxShadow: '$border-default',
 })

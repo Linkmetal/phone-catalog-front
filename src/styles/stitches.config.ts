@@ -2,37 +2,38 @@ import { createStitches } from '@stitches/react'
 
 const gradients = {
   'gradient-top':
-    'linear-gradient(0deg, #006466ff, #065a60ff, #0b525bff, #144552ff, #1b3a4bff, #212f45ff, #272640ff, #312244ff, #3e1f47ff, #4d194dff)',
+    'linear-gradient(0deg, #006466, #065a60, #0b525b, #144552, #1b3a4b, #212f45, #272640, #312244, #3e1f47, #4d194d)',
   'gradient-right':
-    'linear-gradient(90deg, #006466ff, #065a60ff, #0b525bff, #144552ff, #1b3a4bff, #212f45ff, #272640ff, #312244ff, #3e1f47ff, #4d194dff)',
+    'linear-gradient(90deg, #006466, #065a60, #0b525b, #144552, #1b3a4b, #212f45, #272640, #312244, #3e1f47, #4d194d)',
   'gradient-bottom':
-    'linear-gradient(180deg, #006466ff, #065a60ff, #0b525bff, #144552ff, #1b3a4bff, #212f45ff, #272640ff, #312244ff, #3e1f47ff, #4d194dff)',
+    'linear-gradient(180deg, #006466, #065a60, #0b525b, #144552, #1b3a4b, #212f45, #272640, #312244, #3e1f47, #4d194d)',
   'gradient-left':
-    'linear-gradient(270deg, #006466ff, #065a60ff, #0b525bff, #144552ff, #1b3a4bff, #212f45ff, #272640ff, #312244ff, #3e1f47ff, #4d194dff)',
+    'linear-gradient(270deg, #006466, #065a60, #0b525b, #144552, #1b3a4b, #212f45, #272640, #312244, #3e1f47, #4d194d)',
   'gradient-top-right':
-    'linear-gradient(45deg, #006466ff, #065a60ff, #0b525bff, #144552ff, #1b3a4bff, #212f45ff, #272640ff, #312244ff, #3e1f47ff, #4d194dff)',
+    'linear-gradient(45deg, #006466, #065a60, #0b525b, #144552, #1b3a4b, #212f45, #272640, #312244, #3e1f47, #4d194d)',
   'gradient-bottom-right':
-    'linear-gradient(135deg, #006466ff, #065a60ff, #0b525bff, #144552ff, #1b3a4bff, #212f45ff, #272640ff, #312244ff, #3e1f47ff, #4d194dff)',
+    'linear-gradient(135deg, #006466, #065a60, #0b525b, #144552, #1b3a4b, #212f45, #272640, #312244, #3e1f47, #4d194d)',
   'gradient-top-left':
-    'linear-gradient(225deg, #006466ff, #065a60ff, #0b525bff, #144552ff, #1b3a4bff, #212f45ff, #272640ff, #312244ff, #3e1f47ff, #4d194dff)',
+    'linear-gradient(225deg, #006466, #065a60, #0b525b, #144552, #1b3a4b, #212f45, #272640, #312244, #3e1f47, #4d194d)',
   'gradient-bottom-left':
-    'linear-gradient(315deg, #006466ff, #065a60ff, #0b525bff, #144552ff, #1b3a4bff, #212f45ff, #272640ff, #312244ff, #3e1f47ff, #4d194dff)',
+    'linear-gradient(315deg, #006466, #065a60, #0b525b, #144552, #1b3a4b, #212f45, #272640, #312244, #3e1f47, #4d194d)',
   'gradient-radial':
-    'radial-gradient(#006466ff, #065a60ff, #0b525bff, #144552ff, #1b3a4bff, #212f45ff, #272640ff, #312244ff, #3e1f47ff, #4d194dff)',
+    'radial-gradient(#006466, #065a60, #0b525b, #144552, #1b3a4b, #212f45, #272640, #312244, #3e1f47, #4d194d)',
 }
 
 export const colors = {
-  'primary-100': '#006466ff',
-  'primary-200': '#065a60ff',
-  'primary-300': '#0b525bff',
-  'primary-400': '#144552ff',
-  'primary-500': '#1b3a4bff',
-  'secondary-100': '#272640ff',
-  'secondary-200': '#312244ff',
-  'secondary-300': '#3e1f47ff',
-  'secondary-400': '#4d194dff',
+  'primary-100': '#006466',
+  'primary-200': '#065a60',
+  'primary-300': '#0b525b',
+  'primary-400': '#144552',
+  'primary-500': '#1b3a4b',
+  'secondary-100': '#272640',
+  'secondary-200': '#312244',
+  'secondary-300': '#3e1f47',
+  'secondary-400': '#4d194d',
 
-  'white-100': '#ffffffff',
+  'white-100': '#ffffff',
+  'grey-100': '#8a8a8a',
   'text-default': '#26282e',
 }
 
@@ -123,20 +124,20 @@ export const {
       4: '16px',
       round: '50%',
     },
-    shadows: {},
+    shadows: {
+      'elevation-100': '1px 1px 4px rgba(0, 30, 53, 0.1)',
+      'elevation-200': '0px 8px 12px rgba(0, 30, 53, 0.05)',
+      'border-default': 'inset 0 0 0 1px #CFCFD2',
+      'border-hover': 'inset 0 0 0 2px #BFBFBF',
+      'border-focus': 'inset 0 0 0 2px #84868C',
+    },
     zIndices: {},
     transitions: {},
   },
   media: {
-    bp1: '(min-width: 520px)',
-    bp2: '(min-width: 900px)',
-    bp3: '(min-width: 1024px)',
-    bp4: '(min-width: 1480px)',
-    bp5: '(min-width: 1800px)',
-    motion: '(prefers-reduced-motion)',
-    hover: '(any-hover: hover)',
-    dark: '(prefers-color-scheme: dark)',
-    light: '(prefers-color-scheme: light)',
+    sm: '(min-width: 520px)',
+    md: '(min-width: 900px)',
+    lg: '(min-width: 1080px)',
   },
   utils: {
     size: (value: string) => ({
