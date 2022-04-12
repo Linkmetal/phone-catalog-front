@@ -6,8 +6,8 @@ export const Header = () => {
   return (
     <HeaderRoot>
       <FlexContainer css={{ height: '100%', width: '100%' }}>
-        <Typography size="h1" color="white-100">
-          {'This is the header'}
+        <Typography weight="extraBold" color="accentTextContrast" size="h1">
+          PHONE CATALOG
         </Typography>
       </FlexContainer>
     </HeaderRoot>

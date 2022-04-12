@@ -1,43 +1,19 @@
+import {
+  amber,
+  amberDark,
+  grass,
+  grassDark,
+  gray,
+  grayDark,
+  indigo,
+  indigoDark,
+  tomato,
+  tomatoDark,
+  violet,
+  violetDark,
+} from '@radix-ui/colors'
+
 import { createStitches } from '@stitches/react'
-
-const gradients = {
-  'gradient-top':
-    'linear-gradient(0deg, #006466, #065a60, #0b525b, #144552, #1b3a4b, #212f45, #272640, #312244, #3e1f47, #4d194d)',
-  'gradient-right':
-    'linear-gradient(90deg, #006466, #065a60, #0b525b, #144552, #1b3a4b, #212f45, #272640, #312244, #3e1f47, #4d194d)',
-  'gradient-bottom':
-    'linear-gradient(180deg, #006466, #065a60, #0b525b, #144552, #1b3a4b, #212f45, #272640, #312244, #3e1f47, #4d194d)',
-  'gradient-left':
-    'linear-gradient(270deg, #006466, #065a60, #0b525b, #144552, #1b3a4b, #212f45, #272640, #312244, #3e1f47, #4d194d)',
-  'gradient-top-right':
-    'linear-gradient(45deg, #006466, #065a60, #0b525b, #144552, #1b3a4b, #212f45, #272640, #312244, #3e1f47, #4d194d)',
-  'gradient-bottom-right':
-    'linear-gradient(135deg, #006466, #065a60, #0b525b, #144552, #1b3a4b, #212f45, #272640, #312244, #3e1f47, #4d194d)',
-  'gradient-top-left':
-    'linear-gradient(225deg, #006466, #065a60, #0b525b, #144552, #1b3a4b, #212f45, #272640, #312244, #3e1f47, #4d194d)',
-  'gradient-bottom-left':
-    'linear-gradient(315deg, #006466, #065a60, #0b525b, #144552, #1b3a4b, #212f45, #272640, #312244, #3e1f47, #4d194d)',
-  'gradient-radial':
-    'radial-gradient(#006466, #065a60, #0b525b, #144552, #1b3a4b, #212f45, #272640, #312244, #3e1f47, #4d194d)',
-}
-
-export const colors = {
-  'primary-100': '#006466',
-  'primary-200': '#065a60',
-  'primary-300': '#0b525b',
-  'primary-400': '#144552',
-  'primary-500': '#1b3a4b',
-  'secondary-100': '#272640',
-  'secondary-200': '#312244',
-  'secondary-300': '#3e1f47',
-  'secondary-400': '#4d194d',
-
-  'white-100': '#ffffff',
-  'grey-100': '#8a8a8a',
-  'text-default': '#26282e',
-}
-
-export type ColorTokens = keyof typeof colors
 
 export const {
   styled,
@@ -47,10 +23,82 @@ export const {
   globalCss: stitchesGlobal,
   theme,
   keyframes,
+  createTheme,
 } = createStitches({
   theme: {
-    colors,
-    gradients,
+    colors: {
+      ...gray,
+      ...violet,
+      ...tomato,
+      ...grass,
+      ...indigo,
+      ...amber,
+
+      accentBase: '$violet1',
+      accentBgSubtle: '$violet2',
+      accentBg: '$violet3',
+      accentBgHover: '$violet4',
+      accentBgActive: '$violet5',
+      accentLine: '$violet6',
+      accentBorder: '$violet7',
+      accentBorderHover: '$violet8',
+      accentSolid: '$violet9',
+      accentSolidHover: '$violet10',
+      accentText: '$violet11',
+      accentTextContrast: '$violet12',
+
+      successBase: '$grass1',
+      successBgSubtle: '$grass2',
+      successBg: '$grass3',
+      successBgHover: '$grass4',
+      successBgActive: '$grass5',
+      successLine: '$grass6',
+      successBorder: '$grass7',
+      successBorderHover: '$grass8',
+      successSolid: '$grass9',
+      successSolidHover: '$grass10',
+      successText: '$grass11',
+      successTextContrast: '$grass12',
+
+      infoBase: '$indigo1',
+      infoBgSubtle: '$indigo2',
+      infoBg: '$indigo3',
+      infoBgHover: '$indigo4',
+      infoBgActive: '$indigo5',
+      infoLine: '$indigo6',
+      infoBorder: '$indigo7',
+      infoBorderHover: '$indigo8',
+      infoSolid: '$indigo9',
+      infoSolidHover: '$indigo10',
+      infoText: '$indigo11',
+      infoTextContrast: '$indigo12',
+
+      warningBase: '$amber1',
+      warningBgSubtle: '$amber2',
+      warningBg: '$amber3',
+      warningBgHover: '$amber4',
+      warningBgActive: '$amber5',
+      warningLine: '$amber6',
+      warningBorder: '$amber7',
+      warningBorderHover: '$amber8',
+      warningSolid: '$amber9',
+      warningSolidHover: '$amber10',
+      warningText: '$amber11',
+      warningTextContrast: '$amber12',
+
+      dangerBase: '$tomato1',
+      dangerBgSubtle: '$tomato2',
+      dangerBg: '$tomato3',
+      dangerBgHover: '$tomato4',
+      dangerBgActive: '$tomato5',
+      dangerLine: '$tomato6',
+      dangerBorder: '$tomato7',
+      dangerBorderHover: '$tomato8',
+      dangerSolid: '$tomato9',
+      dangerSolidHover: '$tomato10',
+      dangerText: '$tomato11',
+      dangerTextContrast: '$tomato12',
+    },
     space: {
       0: '0px',
       1: '4px',
@@ -115,7 +163,12 @@ export const {
       11: '80px',
       12: '96px',
     },
-    borderWidths: {},
+    borderWidths: {
+      1: '4px',
+      2: '8px',
+      3: '12px',
+      4: '16px',
+    },
     borderStyles: {},
     radii: {
       1: '4px',
@@ -163,6 +216,82 @@ export const {
   },
 })
 
+export const darkTheme = createTheme({
+  colors: {
+    ...grayDark,
+    ...violetDark,
+    ...tomatoDark,
+    ...grassDark,
+    ...indigoDark,
+    ...amberDark,
+
+    accentBase: '$violet1',
+    accentBgSubtle: '$violet2',
+    accentBg: '$violet3',
+    accentBgHover: '$violet4',
+    accentBgActive: '$violet5',
+    accentLine: '$violet6',
+    accentBorder: '$violet7',
+    accentBorderHover: '$violet8',
+    accentSolid: '$violet9',
+    accentSolidHover: '$violet10',
+    accentText: '$violet11',
+    accentTextContrast: '$violet12',
+
+    successBase: '$grass1',
+    successBgSubtle: '$grass2',
+    successBg: '$grass3',
+    successBgHover: '$grass4',
+    successBgActive: '$grass5',
+    successLine: '$grass6',
+    successBorder: '$grass7',
+    successBorderHover: '$grass8',
+    successSolid: '$grass9',
+    successSolidHover: '$grass10',
+    successText: '$grass11',
+    successTextContrast: '$grass12',
+
+    infoBase: '$indigo1',
+    infoBgSubtle: '$indigo2',
+    infoBg: '$indigo3',
+    infoBgHover: '$indigo4',
+    infoBgActive: '$indigo5',
+    infoLine: '$indigo6',
+    infoBorder: '$indigo7',
+    infoBorderHover: '$indigo8',
+    infoSolid: '$indigo9',
+    infoSolidHover: '$indigo10',
+    infoText: '$indigo11',
+    infoTextContrast: '$indigo12',
+
+    warningBase: '$amber1',
+    warningBgSubtle: '$amber2',
+    warningBg: '$amber3',
+    warningBgHover: '$amber4',
+    warningBgActive: '$amber5',
+    warningLine: '$amber6',
+    warningBorder: '$amber7',
+    warningBorderHover: '$amber8',
+    warningSolid: '$amber9',
+    warningSolidHover: '$amber10',
+    warningText: '$amber11',
+    warningTextContrast: '$amber12',
+
+    dangerBase: '$tomato1',
+    dangerBgSubtle: '$tomato2',
+    dangerBg: '$tomato3',
+    dangerBgHover: '$tomato4',
+    dangerBgActive: '$tomato5',
+    dangerLine: '$tomato6',
+    dangerBorder: '$tomato7',
+    dangerBorderHover: '$tomato8',
+    dangerSolid: '$tomato9',
+    dangerSolidHover: '$tomato10',
+    dangerText: '$tomato11',
+    dangerTextContrast: '$tomato12',
+  },
+})
+
 export const globalStyles = stitchesGlobal({
   '*': {
     boxSizing: 'border-box',
@@ -192,5 +321,6 @@ export const globalStyles = stitchesGlobal({
   ':root': {},
 })
 
+export type ColorTokens = keyof typeof theme.colors
 export type SizeTokens = keyof typeof theme.sizes
 export type SpaceTokens = keyof typeof theme.space

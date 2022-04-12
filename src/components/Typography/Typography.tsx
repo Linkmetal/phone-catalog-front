@@ -1,10 +1,10 @@
-import { ColorTokens, colors, styled } from 'styles/stitches.config'
+import { ColorTokens, styled, theme } from 'styles/stitches.config'
 
 type ColorVariants = { [K in ColorTokens]: { color: string } }
 
 const colorVariants = (): ColorVariants => {
   let result = {}
-  Object.keys(colors).map((key) => (result = { ...result, [key]: { color: `$${key}` } }))
+  Object.keys(theme.colors).map((key) => (result = { ...result, [key]: { color: `$${key}` } }))
   return result as ColorVariants
 }
 
@@ -86,6 +86,7 @@ export const Typography = styled('span', {
   },
 
   defaultVariants: {
+    color: 'accentText',
     weight: 'regular',
     align: 'left',
     size: 'body',

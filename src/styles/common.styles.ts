@@ -1,8 +1,9 @@
-import { styled } from '@stitches/react'
+import { styled } from 'styles/stitches.config'
 
 export const Layout = styled('article', {
   height: '100vh',
   width: '100vw',
+  backgroundColor: '$accentBg',
 })
 
 export const FlexContainer = styled('div', {
@@ -66,6 +67,5 @@ export const FlexContainer = styled('div', {
 
 export const Card = styled(FlexContainer, {
   borderRadius: '$2',
-  backgroundColor: '$white-100',
-  boxShadow: '$border-default',
+  backgroundColor: '$accentBg',
 })

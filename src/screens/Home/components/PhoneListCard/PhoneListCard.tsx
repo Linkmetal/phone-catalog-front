@@ -16,7 +16,7 @@ export const PhoneListCard = ({ phone }: PhoneListProps) => {
           <Card css={{ height: '$12', width: '$12' }}>img</Card>
           <FlexContainer direction="column">
             <Typography size="h3">{phone.name}</Typography>
-            <Typography size="body" color="grey-100">
+            <Typography size="body" color="accentTextContrast">
               {phone.manufacturer}
             </Typography>
           </FlexContainer>

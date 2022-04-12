@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 
-import Home from 'screens/Home/Home'
+import { Home } from 'screens/Home'
 import { globalStyles } from 'styles/stitches.config'
 
 export const App = () => {
