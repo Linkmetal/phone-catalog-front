@@ -164,10 +164,10 @@ export const {
       12: '96px',
     },
     borderWidths: {
-      1: '4px',
-      2: '8px',
-      3: '12px',
-      4: '16px',
+      1: '2px',
+      2: '4px',
+      3: '6px',
+      4: '8px',
     },
     borderStyles: {},
     radii: {
