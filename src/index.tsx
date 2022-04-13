@@ -1,3 +1,5 @@
+import { QueryClient, QueryClientProvider } from 'react-query'
+
 import App from './App'
 import { BrowserRouter } from 'react-router-dom'
 import React from 'react'
@@ -5,13 +7,16 @@ import { createRoot } from 'react-dom/client'
 import reportWebVitals from './reportWebVitals'
 
 const container = document.querySelector('#root')
+const queryClient = new QueryClient()
 
 if (container)
   createRoot(container).render(
     <React.StrictMode>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </QueryClientProvider>
     </React.StrictMode>,
   )
 

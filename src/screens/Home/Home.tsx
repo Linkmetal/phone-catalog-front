@@ -6,12 +6,13 @@ import { PhoneList } from 'screens/Home/components'
 import Toolbar from 'components/Toolbar/Toolbar'
 import { Typography } from 'components/Typography'
 import { darkTheme } from 'styles/stitches.config'
-import { phonesFixture } from 'test/fixtures/phones'
+import { useFetchPhones } from 'hooks/queries/useFetchPhones'
 import { useState } from 'react'
 
 export const Home = () => {
   const [searchValue, setSearchValue] = useState('')
   const [isDarkThemeSetted, setIsDarkThemeSetted] = useState(false)
+  const { phones } = useFetchPhones()
 
   return (
     <HomeRoot className={isDarkThemeSetted ? darkTheme : undefined}>
@@ -28,7 +29,7 @@ export const Home = () => {
             <Typography>{'Filters'}</Typography>
           </FlexContainer>
           <div style={{ backgroundColor: '$accentBg' }}>
-            <PhoneList phones={phonesFixture} />
+            <PhoneList phones={phones?.data || []} />
           </div>
         </GridContainer>
       </Layout>
