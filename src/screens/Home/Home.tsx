@@ -10,9 +10,9 @@ import { useFetchPhones } from 'hooks/queries/useFetchPhones'
 import { useState } from 'react'
 
 export const Home = () => {
-  const [searchValue, setSearchValue] = useState('')
+  const [searchQuery, setSearchQuery] = useState('')
   const [isDarkThemeSetted, setIsDarkThemeSetted] = useState(false)
-  const { phones } = useFetchPhones()
+  const { phones } = useFetchPhones({ searchQuery })
 
   return (
     <HomeRoot className={isDarkThemeSetted ? darkTheme : undefined}>
@@ -21,16 +21,14 @@ export const Home = () => {
         <Toolbar
           isDarkThemeSetted={isDarkThemeSetted}
           onThemeChange={setIsDarkThemeSetted}
-          onSearch={setSearchValue}
-          searchValue={searchValue}
+          onSearch={setSearchQuery}
+          searchValue={searchQuery}
         />
         <GridContainer css={{ height: '90%' }}>
           <FlexContainer>
             <Typography>{'Filters'}</Typography>
           </FlexContainer>
-          <div style={{ backgroundColor: '$accentBg' }}>
-            <PhoneList phones={phones?.data || []} />
-          </div>
+          <PhoneList phones={phones?.data || []} />
         </GridContainer>
       </Layout>
     </HomeRoot>
