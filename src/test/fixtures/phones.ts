@@ -11,7 +11,7 @@ export const phonesFixture: Phone[] = [
     imageFileName: 'null',
     screen: '4,7 inch IPS',
     processor: 'A10 Fusion',
-    ram: '2GB',
+    ram: '2 GB',
   },
   {
     id: '6246f580bfca641423e5710k',
@@ -23,7 +23,7 @@ export const phonesFixture: Phone[] = [
     imageFileName: 'null',
     screen: '5 inch IPS',
     processor: 'A10 Fusion',
-    ram: '2GB',
+    ram: '2 GB',
   },
   {
     id: '6246f580bfca641423e5710j',
@@ -35,7 +35,7 @@ export const phonesFixture: Phone[] = [
     imageFileName: 'null',
     screen: '4,7 inch IPS',
     processor: 'A10 Fusion',
-    ram: '2GB',
+    ram: '2 GB',
   },
   {
     id: '6246f580bfca641423e5710h',
@@ -47,7 +47,7 @@ export const phonesFixture: Phone[] = [
     imageFileName: 'null',
     screen: '5 inch IPS',
     processor: 'A10 Fusion',
-    ram: '2GB',
+    ram: '2 GB',
   },
   {
     id: '6246f580bfca641423e5710g',
@@ -59,7 +59,7 @@ export const phonesFixture: Phone[] = [
     imageFileName: 'null',
     screen: '4,7 inch IPS',
     processor: 'A10 Fusion',
-    ram: '2GB',
+    ram: '2 GB',
   },
   {
     id: '6246f580bfca641423e5710d',
@@ -71,7 +71,7 @@ export const phonesFixture: Phone[] = [
     imageFileName: 'null',
     screen: '5 inch IPS',
     processor: 'A10 Fusion',
-    ram: '2GB',
+    ram: '2 GB',
   },
   {
     id: '6246f580bfca641423e5710s',
@@ -83,7 +83,7 @@ export const phonesFixture: Phone[] = [
     imageFileName: 'null',
     screen: '4,7 inch IPS',
     processor: 'A10 Fusion',
-    ram: '2GB',
+    ram: '2 GB',
   },
   {
     id: '6246f580bfca641423e5710a',
@@ -95,6 +95,6 @@ export const phonesFixture: Phone[] = [
     imageFileName: 'null',
     screen: '5 inch IPS',
     processor: 'A10 Fusion',
-    ram: '2GB',
+    ram: '2 GB',
   },
 ]

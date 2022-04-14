@@ -13,7 +13,9 @@ export const PhoneListCard = ({ phone }: PhoneListProps) => {
     <PhoneListCardLinkWrapper as="a" href={`/phone/${phone.id}`}>
       <PhoneListCardRoot direction="column" justify="spaceAround">
         <FlexContainer css={{ width: '100%' }} direction="row" justify="spaceAround">
-          <Card css={{ height: '$12', width: '$12' }}>img</Card>
+          <Card css={{ height: '$12', width: '$12' }}>
+            <img style={{ height: 'auto%', width: '100%' }} src={phone.imageFileName} role="presentation" />
+          </Card>
           <FlexContainer direction="column">
             <Typography size="h3">{phone.name}</Typography>
             <Typography size="body" color="accentTextContrast">

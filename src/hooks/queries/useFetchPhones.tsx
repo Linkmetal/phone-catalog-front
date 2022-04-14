@@ -1,6 +1,6 @@
+import { Phone, PhoneManufacturer } from 'types/phone'
 import { UseQueryOptions, useQuery } from 'react-query'
 
-import { Phone } from 'types/phone'
 import { PhonesRepository } from 'network/repositories/PhonesRepository'
 
 export type FetchPhonesParams = {
@@ -9,6 +9,9 @@ export type FetchPhonesParams = {
   sortColumn?: unknown
   sortDirection?: 'ASC' | 'DESC'
   searchQuery?: string
+  minPrice?: number
+  maxPrice?: number
+  manufacturer?: PhoneManufacturer[]
 }
 
 type FetchPhonesResponse = {
