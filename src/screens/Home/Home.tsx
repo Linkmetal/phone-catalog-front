@@ -1,7 +1,7 @@
+import { FlexContainer, Layout, Loader } from 'styles/common.styles'
 import { GridContainer, HomeRoot } from './Home.styles'
 
 import Header from 'components/Header/Header'
-import { Layout } from 'styles/common.styles'
 import { PhoneFilters } from './components/PhoneFilters'
 import { PhoneFiltersParams } from '../../types/phone'
 import { PhoneList } from './components/PhoneList'
@@ -33,7 +33,12 @@ export const Home = () => {
         />
         <GridContainer css={{ height: '85%' }}>
           <PhoneFilters onFiltersChange={setFilters} filters={filters} />
-          <PhoneList phones={phones?.data || []} />
+          {!phones && (
+            <FlexContainer>
+              <Loader />
+            </FlexContainer>
+          )}
+          {phones && <PhoneList phones={phones?.data || []} />}
         </GridContainer>
       </Layout>
     </HomeRoot>
