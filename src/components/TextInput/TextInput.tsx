@@ -2,7 +2,6 @@ import * as Label from '@radix-ui/react-label'
 
 import { HelperText, Input, InputWrapper, TextInputRoot } from './TextInput.styles'
 
-import { IconName } from 'components/Icon/IconNames'
 import { Typography } from 'components/Typography'
 import { forwardRef } from 'react'
 
@@ -16,7 +15,6 @@ export type TextInputProps = {
   helperText?: string
   label: string
   error?: string
-  icon?: IconName
   singleLine?: boolean
   type?: TextInputType
   min?: number
