@@ -1,3 +1,5 @@
+import { PhoneManufacturerValues, PhoneRamMemoryValues } from 'constants/phone'
+
 export type Phone = {
   id: string
   name: string
@@ -11,12 +13,12 @@ export type Phone = {
   ram: PhoneRamMemory
 }
 
-export type PhoneManufacturer = 'Apple' | 'Xioami' | 'Samsung'
-export type PhoneRamMemory = '2 GB' | '3 GB' | '4 GB' | '5 GB' | '6 GB'
+export type PhoneManufacturer = typeof PhoneManufacturerValues[number]
+export type PhoneRamMemory = typeof PhoneRamMemoryValues[number]
 
 export type PhoneFiltersParams = {
   manufacturer: PhoneManufacturer[]
-  ram?: PhoneRamMemory
+  ram?: PhoneRamMemory[]
   minPrice: number
   maxPrice: number
   searchQuery: string

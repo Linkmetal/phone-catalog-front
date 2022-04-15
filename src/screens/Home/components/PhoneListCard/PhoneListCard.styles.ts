@@ -1,7 +1,9 @@
 import { Card } from 'styles/common.styles'
 import { styled } from 'styles/stitches.config'
 
-export const PhoneListCardLinkWrapper = styled('div', {})
+export const PhoneListCardLinkWrapper = styled('div', {
+  height: '100%',
+})
 
 export const PhoneListCardRoot = styled(Card, {
   width: '100%',

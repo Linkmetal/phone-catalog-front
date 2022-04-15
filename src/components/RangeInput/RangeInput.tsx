@@ -1,17 +1,18 @@
-import { StyledRange, StyledSlider, StyledThumb, StyledTrack } from './RangeInput.styles'
+import { RangeInputRoot, StyledRange, StyledSlider, StyledThumb, StyledTrack } from './RangeInput.styles'
 
-import { FlexContainer } from '../../styles/common.styles'
-import { Typography } from '../Typography'
+import { FlexContainer } from 'styles/common.styles'
+import { Typography } from 'components/Typography'
 
 export type RangeInputProps = {
   value: number[]
   onChange: (value: number[]) => void
+  unit?: string
 }
 
-export const RangeInput = ({ onChange, value }: RangeInputProps) => {
+export const RangeInput = ({ onChange, value, unit }: RangeInputProps) => {
   return (
-    <>
-      <StyledSlider onValueChange={onChange} max={1500} aria-label="Price range filter" value={value}>
+    <RangeInputRoot>
+      <StyledSlider onValueChange={onChange} max={1500} step={50} aria-label="Price range filter" value={value}>
         <StyledTrack>
           <StyledRange />
         </StyledTrack>
@@ -19,10 +20,16 @@ export const RangeInput = ({ onChange, value }: RangeInputProps) => {
         <StyledThumb />
       </StyledSlider>
       <FlexContainer css={{ width: '100%' }} justify="spaceBetween">
-        <Typography>{value[0]}€</Typography>
-        <Typography>{value[1]}€</Typography>
+        <Typography color="accentTextContrast">
+          {value[0]}
+          {unit}
+        </Typography>
+        <Typography color="accentTextContrast">
+          {value[1]}
+          {unit}
+        </Typography>
       </FlexContainer>
-    </>
+    </RangeInputRoot>
   )
 }
 

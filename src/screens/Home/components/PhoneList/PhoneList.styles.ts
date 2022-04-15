@@ -7,6 +7,7 @@ export const PhoneListRoot = styled('div', {
   columnGap: '$4',
   rowGap: '$4',
   padding: '$8',
+  gridTemplateRows: 'max-content',
   gridTemplateColumns: '1fr 1fr 1fr 1fr',
   '@sm': {
     gridTemplateColumns: '1fr',

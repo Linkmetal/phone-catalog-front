@@ -67,5 +67,10 @@ export const FlexContainer = styled('div', {
 
 export const Card = styled(FlexContainer, {
   borderRadius: '$2',
-  backgroundColor: '$accentBg',
+})
+
+export const Img = styled('img', {
+  objectFit: 'contain',
+  width: '100%',
+  height: '100%',
 })

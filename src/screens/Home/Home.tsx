@@ -20,7 +20,6 @@ export const Home = () => {
     ram: undefined,
   })
   const { phones } = useFetchPhones(filters)
-  console.log('🚀 ~ file: Home.tsx ~ line 23 ~ Home ~ filters', filters)
 
   return (
     <HomeRoot className={isDarkThemeSetted ? darkTheme : undefined}>
