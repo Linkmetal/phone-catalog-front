@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 
 import { PhoneFilters } from './PhoneFilters'
 import { PhoneFiltersParams } from 'types/phone'

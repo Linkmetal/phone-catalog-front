@@ -1,12 +1,10 @@
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 
 import { Home } from './Home'
 import { MemoryRouter } from 'react-router-dom'
 import { PhonesRepository } from 'network/repositories/PhonesRepository'
 import { phonesFixture } from 'test/fixtures/phones'
-import userEvent from '@testing-library/user-event'
-import { wait } from '@testing-library/user-event/dist/utils'
 
 describe('Home', () => {
   const queryClient = new QueryClient({
