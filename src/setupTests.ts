@@ -5,6 +5,7 @@
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom'
 import 'jest-axe/extend-expect'
+import 'jest-location-mock'
 
 class ResizeObserver {
   cb: any

@@ -6,14 +6,14 @@ import userEvent from '@testing-library/user-event'
 
 describe('RangeInput', () => {
   it('renders properly', () => {
-    render(<RangeInput onChange={() => undefined} value={[0, 10]} />)
+    render(<RangeInput label="label" onChange={() => undefined} value={[0, 10]} />)
 
     expect(screen.getByText('0')).toBeInTheDocument()
     expect(screen.getByText('10')).toBeInTheDocument()
   })
 
   it('shows the unit token', () => {
-    render(<RangeInput onChange={() => undefined} value={[0, 10]} unit="€" />)
+    render(<RangeInput label="label" onChange={() => undefined} value={[0, 10]} unit="€" />)
 
     expect(screen.getByText('0€')).toBeInTheDocument()
     expect(screen.getByText('10€')).toBeInTheDocument()
@@ -21,7 +21,7 @@ describe('RangeInput', () => {
 
   it('calls onChange on thumb change', async () => {
     const onChangeMock = jest.fn()
-    render(<RangeInput onChange={onChangeMock} value={[0, 10]} step={1} unit="€" />)
+    render(<RangeInput label="label" onChange={onChangeMock} value={[0, 10]} step={1} unit="€" />)
 
     userEvent.tab()
     userEvent.keyboard('[ArrowRight]')
@@ -30,7 +30,7 @@ describe('RangeInput', () => {
   })
 
   it('does not have basic accessibility issues', async () => {
-    const { container } = render(<RangeInput onChange={() => undefined} value={[0, 10]} />)
+    const { container } = render(<RangeInput label="label" onChange={() => undefined} value={[0, 10]} />)
     const results = await axe(container)
 
     expect(results).toHaveNoViolations()

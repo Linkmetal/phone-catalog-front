@@ -18,6 +18,7 @@ export const PhoneFilters = ({ filters, onFiltersChange }: PhoneFiltersProps) =>
       <FilterContainer direction="column" justify="start">
         <Typography size="h5">Price</Typography>
         <RangeInput
+          label="Price Range Filter"
           onChange={(range) => onFiltersChange({ ...filters, minPrice: range[0], maxPrice: range[1] })}
           value={[filters.minPrice, filters.maxPrice]}
           unit="€"

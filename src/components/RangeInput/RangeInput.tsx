@@ -6,6 +6,7 @@ import { Typography } from 'components/Typography'
 export type RangeInputProps = {
   value: number[]
   onChange: (value: number[]) => void
+  label: string
   unit?: string
   step?: number
 }
@@ -13,12 +14,12 @@ export type RangeInputProps = {
 export const RangeInput = ({ onChange, value, unit, step = 50 }: RangeInputProps) => {
   return (
     <RangeInputRoot>
-      <StyledSlider onValueChange={onChange} max={1500} step={step} aria-label="Price range filter" value={value}>
+      <StyledSlider role="presentation" onValueChange={onChange} max={1500} step={step} value={value}>
         <StyledTrack>
           <StyledRange />
         </StyledTrack>
-        <StyledThumb />
-        <StyledThumb />
+        <StyledThumb role="slider" aria-valuenow={value[0]} />
+        <StyledThumb role="slider" aria-valuenow={value[1]} />
       </StyledSlider>
       <FlexContainer css={{ width: '100%' }} justify="spaceBetween">
         <Typography color="accentTextContrast">

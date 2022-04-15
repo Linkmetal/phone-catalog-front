@@ -4,11 +4,13 @@ import {
   LightThemeToggleIcon,
   ToolbarRoot,
 } from 'components/Toolbar/Toolbar.styles'
+import { useDebounce, useUpdateEffect } from 'ahooks'
 
 import { FlexContainer } from 'styles/common.styles'
 import { Link } from 'react-router-dom'
 import { TextInput } from 'components/TextInput'
 import { Typography } from 'components/Typography'
+import { useState } from 'react'
 
 export type ToolbarProps = {
   searchValue: string
@@ -18,6 +20,13 @@ export type ToolbarProps = {
 }
 
 export const Toolbar = ({ searchValue, onSearch, onThemeChange, isDarkThemeSetted }: ToolbarProps) => {
+  const [searchQuery, setSearchQuery] = useState(searchValue)
+  const debouncedSearchValue = useDebounce(searchQuery, { wait: 300 })
+
+  useUpdateEffect(() => {
+    onSearch(debouncedSearchValue)
+  }, [debouncedSearchValue])
+
   return (
     <ToolbarRoot>
       <FlexContainer justify="spaceBetween" css={{ height: '100%', width: '100%' }}>
@@ -31,13 +40,13 @@ export const Toolbar = ({ searchValue, onSearch, onThemeChange, isDarkThemeSette
             singleLine
             id="searchValue"
             label={'Search phone'}
-            value={searchValue}
-            onChange={onSearch}
+            value={searchQuery}
+            onChange={setSearchQuery}
             placeholder={'Search phone...'}
           />
         </FlexContainer>
         <FlexContainer justify="end">
-          <DarkThemeToggle pressed={isDarkThemeSetted} onPressedChange={onThemeChange}>
+          <DarkThemeToggle aria-label="Toggle dark theme" pressed={isDarkThemeSetted} onPressedChange={onThemeChange}>
             {isDarkThemeSetted ? <LightThemeToggleIcon /> : <DarkThemeToggleIcon />}
           </DarkThemeToggle>
         </FlexContainer>

@@ -11,7 +11,7 @@ import { useFetchPhones } from 'hooks/queries/useFetchPhones'
 import { useState } from 'react'
 
 export const Home = () => {
-  const [isDarkThemeSetted, setIsDarkThemeSetted] = useState(false)
+  const [isDarkThemeSetted, setIsDarkThemeSetted] = useState<boolean>(false)
   const [filters, setFilters] = useState<PhoneFiltersParams>({
     manufacturer: [],
     maxPrice: 1500,
@@ -19,6 +19,7 @@ export const Home = () => {
     searchQuery: '',
     ram: undefined,
   })
+
   const { phones } = useFetchPhones(filters)
 
   return (
