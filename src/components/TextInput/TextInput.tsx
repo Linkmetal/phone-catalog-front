@@ -34,7 +34,6 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       error,
       disabled = false,
       placeholder = '',
-      icon,
       min,
       max,
       singleLine = false,
@@ -44,7 +43,13 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
   ) => {
     return (
       <TextInputRoot>
-        <Label.Root aria-label={label} asChild style={{ display: singleLine ? 'none' : 'inherit' }} htmlFor={id}>
+        <Label.Root
+          role="presentation"
+          aria-label={label}
+          asChild
+          style={{ display: singleLine ? 'none' : 'inherit' }}
+          htmlFor={id}
+        >
           <Typography size="caption" color="accentTextContrast">
             {label}
           </Typography>

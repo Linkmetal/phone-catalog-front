@@ -6,11 +6,10 @@ import { axe } from 'jest-axe'
 import userEvent from '@testing-library/user-event'
 
 describe('TextInput', () => {
-  it('displays the label', () => {
+  it('renders properly', () => {
     render(<TextInput id="id" label="label" value="" />)
 
-    expect(screen.getByText('label')).toBeInTheDocument()
-    expect(screen.getByLabelText('label')).toBeInTheDocument()
+    expect(screen.getAllByText('label')[0]).toBeInTheDocument()
   })
 
   it('displays the helper text', () => {
@@ -20,37 +19,27 @@ describe('TextInput', () => {
   })
 
   it('can be disabled', () => {
-    const onChange = jest.fn()
-    render(<TextInput id="id" label="label" helperText="Helper text" onChange={onChange} disabled value="" />)
+    const onChangeMock = jest.fn()
+    render(<TextInput id="id" label="label" onChange={onChangeMock} disabled value="" />)
 
-    expect(screen.getByLabelText('label')).toBeDisabled()
+    userEvent.type(screen.getAllByLabelText('label')[0], 'content')
 
-    userEvent.type(screen.getByLabelText('label'), 'content')
-
-    expect(onChange).not.toHaveBeenCalled()
-  })
-
-  it('can be read-only', () => {
-    const onChange = jest.fn()
-    render(<TextInput id="id" label="label" helperText="Helper text" onChange={onChange} disabled={true} value="" />)
-
-    userEvent.type(screen.getByLabelText('label'), 'content')
-
-    expect(onChange).not.toHaveBeenCalled()
+    expect(onChangeMock).not.toHaveBeenCalled()
+    expect(screen.getAllByLabelText('label')[0]).toBeDisabled()
   })
 
   it('shows the value passed as prop', () => {
-    const onChange = jest.fn()
-    render(<TextInput id="id" label="label" value="test-value" helperText="Helper text" onChange={onChange} />)
+    const onChangeMock = jest.fn()
+    render(<TextInput id="id" label="label" value="test-value" onChange={onChangeMock} />)
 
     expect(screen.getByDisplayValue('test-value')).toBeInTheDocument()
   })
 
   it('calls the onChange method with the changed value', () => {
     const onChange = jest.fn()
-    render(<TextInput id="id" label="label" value="a" helperText="Helper text" onChange={onChange} />)
+    render(<TextInput id="id" label="label" value="a" onChange={onChange} />)
 
-    userEvent.type(screen.getByLabelText('label'), 'b')
+    userEvent.type(screen.getAllByLabelText('label')[0], 'b')
 
     expect(onChange).toHaveBeenCalledWith('ab')
   })

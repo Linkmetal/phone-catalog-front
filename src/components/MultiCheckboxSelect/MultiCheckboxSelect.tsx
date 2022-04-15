@@ -1,15 +1,15 @@
+import * as Label from '@radix-ui/react-label'
+
 import {
   Checkbox,
   CheckboxIndicator,
   MultiCheckboxSelectRoot,
 } from 'components/MultiCheckboxSelect/MultiCheckboxSelect.styles'
+import { useSelections, useUpdateEffect } from 'ahooks'
 
 import { CheckIcon } from '@radix-ui/react-icons'
 import { FlexContainer } from 'styles/common.styles'
-import { Label } from '@radix-ui/react-label'
 import { Typography } from 'components/Typography'
-import { useEffect } from 'react'
-import { useSelections } from 'ahooks'
 
 export type MultiCheckboxSelectProps = {
   options: string[]
@@ -20,7 +20,7 @@ export type MultiCheckboxSelectProps = {
 export const MultiCheckboxSelect = ({ onChange, options, defaultOptions = [] }: MultiCheckboxSelectProps) => {
   const { isSelected, toggle, selected } = useSelections<string>(options, defaultOptions)
 
-  useEffect(() => {
+  useUpdateEffect(() => {
     onChange(selected)
   }, [selected])
 
@@ -29,6 +29,7 @@ export const MultiCheckboxSelect = ({ onChange, options, defaultOptions = [] }: 
       {options.map((option, index) => (
         <FlexContainer css={{ marginBottom: '$1' }} justify="start" key={`${option}-${index}`}>
           <Checkbox
+            role="checkbox"
             onClick={() => {
               toggle(option)
             }}
@@ -39,11 +40,11 @@ export const MultiCheckboxSelect = ({ onChange, options, defaultOptions = [] }: 
               <CheckIcon />
             </CheckboxIndicator>
           </Checkbox>
-          <Label htmlFor="c1">
+          <Label.Root role="presentation" aria-label={`Check ${option} option`} htmlFor={`${option}-checkbox`}>
             <Typography size="button" color="accentTextContrast">
               {option}
             </Typography>
-          </Label>
+          </Label.Root>
         </FlexContainer>
       ))}
     </MultiCheckboxSelectRoot>

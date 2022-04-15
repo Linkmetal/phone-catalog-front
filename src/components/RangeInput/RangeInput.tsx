@@ -7,12 +7,13 @@ export type RangeInputProps = {
   value: number[]
   onChange: (value: number[]) => void
   unit?: string
+  step?: number
 }
 
-export const RangeInput = ({ onChange, value, unit }: RangeInputProps) => {
+export const RangeInput = ({ onChange, value, unit, step = 50 }: RangeInputProps) => {
   return (
     <RangeInputRoot>
-      <StyledSlider onValueChange={onChange} max={1500} step={50} aria-label="Price range filter" value={value}>
+      <StyledSlider onValueChange={onChange} max={1500} step={step} aria-label="Price range filter" value={value}>
         <StyledTrack>
           <StyledRange />
         </StyledTrack>
