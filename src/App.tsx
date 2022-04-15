@@ -1,13 +1,15 @@
-import './App.css'
-
 import { Route, Routes } from 'react-router-dom'
 
-function App() {
+import { Home } from 'screens/Home'
+import { globalStyles } from 'styles/stitches.config'
+
+export const App = () => {
+  globalStyles()
+
   return (
     <Routes>
-      <Route path="/" element={<div>Home</div>} />
-      <Route path="/list" element={<div>List</div>} />
-      <Route path="about" element={<div>About</div>} />
+      <Route path="/" element={<Home />} />
+      <Route path="/phones/:id" element={<div>Phone Detail</div>} />
     </Routes>
   )
 }
