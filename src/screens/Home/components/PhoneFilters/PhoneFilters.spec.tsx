@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 
 import { PhoneFilters } from './PhoneFilters'
 import { PhoneFiltersParams } from 'types/phone'
@@ -27,7 +27,9 @@ describe('PhoneFilters', () => {
     userEvent.tab()
     userEvent.keyboard('[ArrowRight]')
 
-    expect(onFiltersChangeMock).toHaveBeenCalledWith({ minPrice: 50, maxPrice: 1500 })
+    await waitFor(() => {
+      expect(onFiltersChangeMock).toHaveBeenCalledWith({ minPrice: 50, maxPrice: 1500 })
+    })
   })
 
   it('calls onFilterChange on manufacturer checkbox click', async () => {

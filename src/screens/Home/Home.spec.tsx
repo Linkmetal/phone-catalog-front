@@ -18,7 +18,9 @@ describe('Home', () => {
     },
   })
   beforeEach(() => {
-    jest.spyOn(PhonesRepository, 'fetch').mockResolvedValue({ pagination: {}, data: phonesFixture })
+    jest
+      .spyOn(PhonesRepository, 'fetch')
+      .mockResolvedValue({ pagination: { offset: 0, pageTake: 9, total: 9 }, data: phonesFixture })
   })
 
   it('renders properly', async () => {

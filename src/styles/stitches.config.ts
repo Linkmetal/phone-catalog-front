@@ -11,6 +11,7 @@ import {
   tomatoDark,
   violet,
   violetDark,
+  whiteA,
 } from '@radix-ui/colors'
 
 import { createStitches } from '@stitches/react'
@@ -33,6 +34,7 @@ export const {
       ...grass,
       ...indigo,
       ...amber,
+      ...whiteA,
 
       accentBase: '$violet1',
       accentBgSubtle: '$violet2',

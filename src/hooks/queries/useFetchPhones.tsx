@@ -1,10 +1,11 @@
 import { Phone, PhoneManufacturer } from 'types/phone'
 import { UseQueryOptions, useQuery } from 'react-query'
 
+import { PaginatedResponse } from 'types/PaginatedResponse'
 import { PhonesRepository } from 'network/repositories/PhonesRepository'
 
 export type FetchPhonesParams = {
-  pageStart?: number
+  offset?: number
   pageTake?: number
   sortColumn?: unknown
   sortDirection?: 'ASC' | 'DESC'
@@ -14,22 +15,17 @@ export type FetchPhonesParams = {
   manufacturer?: PhoneManufacturer[]
 }
 
-type FetchPhonesResponse = {
-  pagination: unknown
-  data: Phone[]
-}
-
 export namespace FetchPhones {
   export type Params = FetchPhonesParams
-  export type Response = FetchPhonesResponse
+  export type Response = PaginatedResponse<Phone[]>
   export type Error = unknown
   export type Options = UseQueryOptions<Response, Error>
 }
 
 const createKey = (params: FetchPhones.Params = {}) => ['fetch-students', JSON.stringify(params)]
 
-const queryFetcher = (params?: FetchPhones.Params) => () => {
-  return PhonesRepository.fetch(params)
+const queryFetcher = (params?: FetchPhones.Params) => async () => {
+  return await PhonesRepository.fetch(params)
 }
 
 export const useFetchPhones = (params?: FetchPhones.Params, options?: FetchPhones.Options) => {
