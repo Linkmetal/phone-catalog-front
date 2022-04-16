@@ -8,7 +8,7 @@ export const ToolbarRoot = styled('div', {
   position: 'relative',
   width: '100%',
   height: '5%',
-  backgroundColor: '$accentBgSubtle',
+  backgroundColor: '$accentBgActive',
   borderColor: '$accentBorder',
   borderWidth: '$1',
   borderStyle: 'solid',

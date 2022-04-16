@@ -3,7 +3,7 @@ import { styled } from 'styles/stitches.config'
 
 export const PhoneFiltersRoot = styled(FlexContainer, {
   padding: '$4',
-  backgroundColor: '$accentBgActive',
+  backgroundColor: '$accentBg',
   height: '100%',
   gap: '$4',
   borderRight: 'solid 2px $accentBorder',

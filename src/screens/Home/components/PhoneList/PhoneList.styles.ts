@@ -2,7 +2,7 @@ import { styled } from 'styles/stitches.config'
 
 export const PhoneListRoot = styled('div', {
   height: '100%',
-  overflow: 'scroll',
+  overflow: 'auto',
   display: 'grid',
   columnGap: '$4',
   rowGap: '$4',

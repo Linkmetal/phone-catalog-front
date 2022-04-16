@@ -3,7 +3,7 @@ import { keyframes, styled } from 'styles/stitches.config'
 export const Layout = styled('article', {
   height: '100vh',
   width: '100vw',
-  backgroundColor: '$accentBg',
+  backgroundColor: '$accentBase',
 })
 
 export const FlexContainer = styled('div', {
@@ -125,5 +125,16 @@ export const Loader = styled('div', {
   '&::after': {
     animation: `${animPend2} 0.5s linear infinite alternate`,
     left: ' 100%',
+  },
+})
+
+export const Button = styled('button', {
+  all: 'unset',
+  padding: '$2',
+  borderRadius: '$2',
+  backgroundColor: '$accentBg',
+  '&:hover': {
+    cursor: 'pointer',
+    backgroundColor: '$accentBgHover',
   },
 })

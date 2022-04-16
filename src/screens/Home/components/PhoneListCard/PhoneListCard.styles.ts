@@ -11,6 +11,7 @@ export const PhoneListCardRoot = styled(Card, {
   padding: '$4',
   border: 'solid $accentBorder',
   borderWidth: '$1',
+  backgroundColor: '$accentBg',
   '&:hover': {
     borderColor: '$accentBorderHover',
     backgroundColor: '$accentBgHover',

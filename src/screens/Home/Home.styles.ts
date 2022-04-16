@@ -1,7 +1,7 @@
 import { styled } from 'styles/stitches.config'
 
 export const HomeRoot = styled('div', {
-  backgroundColor: '$accentBase',
+  backgroundColor: '$accentSolid',
 })
 
 export const GridContainer = styled('section', {
