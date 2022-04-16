@@ -29,8 +29,8 @@ export const PhoneList = ({ phones, onLoadMore, isLoading, hasReachedTotal }: Ph
           {!isLoading && (
             <FlexContainer css={{ gridColumn: '1 / 4', gridRowEnd: 'span 8' }}>
               <Button onClick={onLoadMore}>
-                <Label>
-                  <Typography color="accentTextContrast">Load more</Typography>
+                <Label role="button" aria-label="Load more phones">
+                  <Typography color="whiteA12">Load more</Typography>
                 </Label>
               </Button>
             </FlexContainer>

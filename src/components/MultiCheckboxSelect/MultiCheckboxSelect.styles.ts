@@ -26,5 +26,5 @@ export const Checkbox = styled(RadixCheckbox.Root, {
 })
 
 export const CheckboxIndicator = styled(RadixCheckbox.Indicator, {
-  color: '$accentTextContrast',
+  color: '$whiteA12',
 })
