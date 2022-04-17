@@ -4,7 +4,7 @@ import { PhoneList } from './PhoneList'
 import { axe } from 'jest-axe'
 import { phonesFixture } from 'test/fixtures/phones'
 
-describe('Home', () => {
+describe('PhoneList', () => {
   it('renders the phone list properly', () => {
     render(<PhoneList hasReachedTotal={false} isLoading={false} onLoadMore={() => undefined} phones={phonesFixture} />)
 

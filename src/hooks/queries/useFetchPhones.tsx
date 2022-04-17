@@ -22,7 +22,7 @@ export namespace FetchPhones {
   export type Options = UseQueryOptions<Response, Error>
 }
 
-const createKey = (params: FetchPhones.Params = {}) => ['fetch-students', JSON.stringify(params)]
+const createKey = (params: FetchPhones.Params = {}) => ['fetch-phones', JSON.stringify(params)]
 
 const queryFetcher = (params?: FetchPhones.Params) => async () => {
   return await PhonesRepository.fetch(params)
