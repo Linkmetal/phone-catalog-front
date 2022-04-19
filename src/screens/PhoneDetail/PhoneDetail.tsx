@@ -9,7 +9,7 @@ import {
 import { DetailField, DetailsGridContainer } from './PhoneDetail.styles'
 import { FlexContainer, Img, Layout } from 'styles/common.styles'
 
-import Header from 'components/Header/Header'
+import { Header } from 'components/Header'
 import { PhoneDetailRoot } from 'screens/PhoneDetail/PhoneDetail.styles'
 import { Toolbar } from 'components/Toolbar'
 import { Typography } from 'components/Typography'

@@ -130,11 +130,11 @@ export const Loader = styled('div', {
 
 export const Button = styled('button', {
   all: 'unset',
+  boxSizing: 'border-box',
   paddingY: '$2',
   paddingX: '$4',
   borderRadius: '$2',
   backgroundColor: '$accentSolid',
-  boxSizing: 'border-box',
   '&:hover': {
     cursor: 'pointer',
     backgroundColor: '$accentSolidHover',
@@ -142,6 +142,9 @@ export const Button = styled('button', {
   '&:active': {
     backgroundColor: '$accentText',
     boxShadow: 'inset 0 0 1px 1px black',
+  },
+  '&:focus': {
+    outline: '$accentBorderHover 3px solid',
   },
   variants: {
     variant: {

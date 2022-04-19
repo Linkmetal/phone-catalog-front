@@ -7,9 +7,8 @@ export const InputWrapper = styled('div', {
   flexDirection: 'row',
   alignItems: 'center',
   width: '100%',
-
+  border: 'solid 1px $accentBorder',
   borderRadius: '$2',
-
   padding: '$2 $4',
 
   '& > svg': {

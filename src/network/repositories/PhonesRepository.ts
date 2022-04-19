@@ -14,7 +14,7 @@ export const PhonesRepository = {
     return ApiClient.get<FetchPhoneDetails.Params, FetchPhoneDetails.Response>(`/phones/${id}`)
   },
   add(data: AddPhone.Variables) {
-    return ApiClient.post<AddPhone.Variables, AddPhone.Response>('/phones', { data })
+    return ApiClient.post<AddPhone.Variables, AddPhone.Response>('/phones', data)
   },
   edit(id: string, data: EditPhone.Variables) {
     return ApiClient.patch<EditPhone.Variables, EditPhone.Response>(`/phones/${id}`, { data })
@@ -23,8 +23,12 @@ export const PhonesRepository = {
     return ApiClient.delete<DeletePhone.Params, DeletePhone.Response>(`/phones/${id}`)
   },
   addImage(data: AddPhoneImage.Variables) {
-    return ApiClient.post<AddPhoneImage.Variables, AddPhoneImage.Response>(`/phones/${data.id}/image`, {
-      data: data.image,
+    const fd = new FormData()
+    fd.append('file', data.image)
+    return ApiClient.post<AddPhoneImage.Variables, AddPhoneImage.Response>(`/phones/${data.id}/image`, fd, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
     })
   },
 }

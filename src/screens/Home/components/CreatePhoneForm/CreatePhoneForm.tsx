@@ -1,10 +1,13 @@
 import { AddPhone, useAddPhone } from 'hooks/mutations/useAddPhone'
 import { AddPhoneImage, useAddPhoneImage } from 'hooks/mutations/useAddPhoneImage'
+import { PhoneManufacturer, PhoneRamMemory } from 'types/phone'
+import { PhoneManufacturerValues, PhoneRamMemoryValues } from 'constants/phone'
 
 import { Button } from 'styles/common.styles'
 import { CreatePhoneFormRoot } from './CreatePhoneForm.styles'
 import { FileInput } from 'components/FileInput'
 import { FormErrors } from 'types/FormErrors'
+import { Select } from 'components/Select'
 import { TextInput } from 'components/TextInput'
 import { Typography } from 'components/Typography'
 import { useFormik } from 'formik'
@@ -81,6 +84,10 @@ export const CreatePhoneForm = ({ onSuccess }: PhoneListProps) => {
       errors.screen = 'Required'
     }
 
+    if (!values.color) {
+      errors.color = 'Required'
+    }
+
     return errors
   }
 
@@ -106,10 +113,11 @@ export const CreatePhoneForm = ({ onSuccess }: PhoneListProps) => {
           id="name"
           label="Name"
         />
-        <TextInput
+        <Select
+          placeholder="Select manufacturer"
           value={values?.manufacturer || ''}
-          // onChange={(manufacturer) => setValues({ ...values, manufacturer })}
-          error={errors.manufacturer}
+          values={[...PhoneManufacturerValues]}
+          onChange={(manufacturer) => setValues({ ...values, manufacturer: manufacturer as PhoneManufacturer })}
           id="manufacturer"
           label="Manufacturer"
         />
@@ -120,10 +128,11 @@ export const CreatePhoneForm = ({ onSuccess }: PhoneListProps) => {
           id="processor"
           label="Proccessor"
         />
-        <TextInput
+        <Select
+          placeholder="Select RAM"
           value={values?.ram || ''}
-          // onChange={(ram) => setValues({ ...values, ram })}
-          error={errors.ram}
+          values={[...PhoneRamMemoryValues]}
+          onChange={(ram) => setValues({ ...values, ram: ram as PhoneRamMemory })}
           id="ram"
           label="RAM Memory"
         />
@@ -133,6 +142,13 @@ export const CreatePhoneForm = ({ onSuccess }: PhoneListProps) => {
           error={errors.screen}
           id="screen"
           label="Screen"
+        />
+        <TextInput
+          value={values?.color || ''}
+          onChange={(color) => setValues({ ...values, color })}
+          error={errors.color}
+          id="color"
+          label="Color"
         />
         <TextInput
           type="number"

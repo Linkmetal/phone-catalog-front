@@ -2,7 +2,7 @@ import { GridContainer, HomeRoot } from './Home.styles'
 import { Phone, PhoneFiltersParams } from 'types/phone'
 
 import { CreatePhoneForm } from 'screens/Home/components/CreatePhoneForm'
-import Header from 'components/Header/Header'
+import { Header } from 'components/Header'
 import { Layout } from 'styles/common.styles'
 import { Modal } from 'components/Modal'
 import { PhoneFilters } from './components/PhoneFilters'
@@ -34,7 +34,11 @@ export const Home = () => {
     setFilters({ ...filters })
   }
 
-  const { phones, isLoading } = useFetchPhones(
+  const {
+    phones,
+    isLoading,
+    refetch: refetchPhones,
+  } = useFetchPhones(
     { ...filters, pageTake: PAGE_SIZE, offset: PAGE_SIZE * (page - 1) },
     {
       onSuccess: (result) => {
@@ -85,7 +89,14 @@ export const Home = () => {
       </Layout>
 
       <Modal onClose={() => setIsCreatePhoneModalOpen(false)} open={isCreatePhoneModalOpen}>
-        <CreatePhoneForm onCancel={() => undefined} onError={() => undefined} onSuccess={() => undefined} />
+        <CreatePhoneForm
+          onCancel={() => undefined}
+          onError={() => undefined}
+          onSuccess={() => {
+            setIsCreatePhoneModalOpen(false)
+            refetchPhones()
+          }}
+        />
       </Modal>
     </HomeRoot>
   )

@@ -13,7 +13,9 @@ const scaleIn = keyframes({
   to: { opacity: 1, transform: 'scale(1) translate(0)' },
 })
 
-export const ModalRoot = styled(Dialog.Root)
+export const ModalRoot = styled(Dialog.Root, {
+  backgroundColor: '$accentBg',
+})
 
 export const Portal = styled(Dialog.Portal)
 
