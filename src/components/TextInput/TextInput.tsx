@@ -40,7 +40,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
     forwardedRef,
   ) => {
     return (
-      <TextInputRoot>
+      <TextInputRoot singleLine={singleLine}>
         <Label.Root
           role="presentation"
           aria-label={label}
@@ -52,7 +52,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
             {label}
           </Typography>
         </Label.Root>
-        <InputWrapper>
+        <InputWrapper css={{ backgroundColor: '$accentBgHover' }}>
           <Input
             id={id}
             ref={forwardedRef}
@@ -65,11 +65,9 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
             max={max}
           />
         </InputWrapper>
-        {(helperText || error) && (
-          <HelperText error={!!error} size="caption" css={{ marginBottom: '$4' }}>
-            {error || helperText}
-          </HelperText>
-        )}
+        <HelperText error={!!error} size="caption" css={{ marginBottom: '$2' }}>
+          {error || helperText}
+        </HelperText>
       </TextInputRoot>
     )
   },

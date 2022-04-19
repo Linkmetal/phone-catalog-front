@@ -143,4 +143,17 @@ export const Button = styled('button', {
     backgroundColor: '$accentText',
     boxShadow: 'inset 0 0 1px 1px black',
   },
+  variants: {
+    variant: {
+      danger: {
+        backgroundColor: '$dangerSolid',
+        '&:hover': {
+          backgroundColor: '$dangerSolidHover',
+        },
+        '&:active': {
+          backgroundColor: '$dangerText',
+        },
+      },
+    },
+  },
 })

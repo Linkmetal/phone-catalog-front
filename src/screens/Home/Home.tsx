@@ -1,21 +1,26 @@
 import { GridContainer, HomeRoot } from './Home.styles'
 import { Phone, PhoneFiltersParams } from 'types/phone'
 
+import { CreatePhoneForm } from 'screens/Home/components/CreatePhoneForm'
 import Header from 'components/Header/Header'
 import { Layout } from 'styles/common.styles'
+import { Modal } from 'components/Modal'
 import { PhoneFilters } from './components/PhoneFilters'
 import { PhoneList } from './components/PhoneList'
 import { Toolbar } from 'components/Toolbar'
 import { darkTheme } from 'styles/stitches.config'
 import { useFetchPhones } from 'hooks/queries/useFetchPhones'
 import { useState } from 'react'
+import { useTitle } from 'ahooks'
 
 const PAGE_SIZE = 9
 
 export const Home = () => {
+  useTitle('Phone Catalog - List')
   const [page, setPage] = useState(1)
   const [phoneList, setPhoneList] = useState<Phone[]>([])
   const [isDarkThemeSetted, setIsDarkThemeSetted] = useState<boolean>(false)
+  const [isCreatePhoneModalOpen, setIsCreatePhoneModalOpen] = useState<boolean>(false)
   const [filters, setFilters] = useState<PhoneFiltersParams>({
     manufacturer: [],
     ram: [],
@@ -42,8 +47,6 @@ export const Home = () => {
   )
 
   const resetList = () => {
-    console.log('resetting list', filters)
-
     setPhoneList([])
     setPage(1)
   }
@@ -60,6 +63,7 @@ export const Home = () => {
             setFilters({ ...filters, searchQuery })
           }}
           searchValue={filters.searchQuery}
+          onCreatePhone={() => setIsCreatePhoneModalOpen(!isCreatePhoneModalOpen)}
         />
         <GridContainer css={{ height: '85%' }}>
           <PhoneFilters
@@ -79,6 +83,10 @@ export const Home = () => {
           )}
         </GridContainer>
       </Layout>
+
+      <Modal onClose={() => setIsCreatePhoneModalOpen(false)} open={isCreatePhoneModalOpen}>
+        <CreatePhoneForm onCancel={() => undefined} onError={() => undefined} onSuccess={() => undefined} />
+      </Modal>
     </HomeRoot>
   )
 }

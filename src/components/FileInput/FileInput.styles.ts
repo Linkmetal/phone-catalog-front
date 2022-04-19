@@ -1,22 +1,14 @@
 import { FlexContainer } from 'styles/common.styles'
-import { Typography } from 'components/Typography'
 import { styled } from 'styles/stitches.config'
 
-export const InputWrapper = styled('div', {
+export const FileInputWrapper = styled('div', {
   display: 'flex',
   flexDirection: 'row',
   alignItems: 'center',
   width: '100%',
-
+  backgroundColor: 'transparent',
   borderRadius: '$2',
-
   padding: '$2 $4',
-
-  '& > svg': {
-    color: '$accentText',
-    marginRight: '$2',
-    marginLeft: '-$1',
-  },
 
   '&:focus': {
     outline: 'none',
@@ -66,36 +58,7 @@ export const Input = styled('input', {
   },
 })
 
-export const HelperText = styled(Typography, {
-  color: '$accentTextContrast',
-  fontSize: '$small',
-  marginTop: '$2',
-
-  variants: {
-    error: {
-      true: {
-        color: '$dangerText',
-      },
-    },
-    success: {
-      true: {
-        color: '$successText',
-      },
-    },
-    info: {
-      true: {
-        color: '$infoText',
-      },
-    },
-    disabled: {
-      true: {
-        color: '$gray1',
-      },
-    },
-  },
-})
-
-export const TextInputRoot = styled('div', {
+export const FileInputRoot = styled('div', {
   display: 'flex',
   justifyContent: 'flex-start',
   alignItems: 'flex-start',
