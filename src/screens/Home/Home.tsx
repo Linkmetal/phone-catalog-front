@@ -1,6 +1,5 @@
 import { GridContainer, HomeRoot } from './Home.styles'
 import { Phone, PhoneFiltersParams } from 'types/phone'
-import { useCookieState, useTitle } from 'ahooks'
 
 import { CreatePhoneForm } from 'screens/Home/components/CreatePhoneForm'
 import { Header } from 'components/Header'
@@ -9,9 +8,9 @@ import { Modal } from 'components/Modal'
 import { PhoneFilters } from './components/PhoneFilters'
 import { PhoneList } from './components/PhoneList'
 import { Toolbar } from 'components/Toolbar'
-import { darkTheme } from 'styles/stitches.config'
 import { useFetchPhones } from 'hooks/queries/useFetchPhones'
 import { useState } from 'react'
+import { useTitle } from 'ahooks'
 import { useToastContext } from 'contexts/ToastContext'
 
 const PAGE_SIZE = 9
@@ -21,7 +20,6 @@ export const Home = () => {
   const { setToastMessage } = useToastContext()
   const [page, setPage] = useState(1)
   const [phoneList, setPhoneList] = useState<Phone[]>([])
-  const [isDarkThemeSetted, setIsDarkThemeSetted] = useCookieState('darkTheme', { defaultValue: 'false' })
   const [isCreatePhoneModalOpen, setIsCreatePhoneModalOpen] = useState<boolean>(false)
   const [filters, setFilters] = useState<PhoneFiltersParams>({
     manufacturer: [],
@@ -58,12 +56,10 @@ export const Home = () => {
   }
 
   return (
-    <HomeRoot className={isDarkThemeSetted === 'true' ? darkTheme : undefined}>
+    <HomeRoot>
       <Layout>
         <Header />
         <Toolbar
-          isDarkThemeSetted={isDarkThemeSetted || 'false'}
-          onThemeChange={() => setIsDarkThemeSetted(isDarkThemeSetted === 'true' ? 'false' : 'true')}
           onSearch={(searchQuery) => {
             resetList()
             setFilters({ ...filters, searchQuery })

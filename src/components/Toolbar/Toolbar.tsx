@@ -6,31 +6,23 @@ import {
   ToolbarRoot,
 } from 'components/Toolbar/Toolbar.styles'
 import { Pencil2Icon, PlusCircledIcon, TrashIcon } from '@radix-ui/react-icons'
-import { useDebounce, useUpdateEffect } from 'ahooks'
+import { useCookieState, useDebounce, useUpdateEffect } from 'ahooks'
 
 import { TextInput } from 'components/TextInput'
 import { Typography } from 'components/Typography'
+import { darkTheme } from 'styles/stitches.config'
 import { useState } from 'react'
 
 export type ToolbarProps = {
   searchValue?: string
-  isDarkThemeSetted: string
   onSearch?: (searchValue: string) => void
-  onThemeChange: (value: boolean) => void
   onCreatePhone?: () => void
   onEditPhone?: () => void
   onDeletePhone?: () => void
 }
 
-export const Toolbar = ({
-  searchValue,
-  onSearch,
-  onThemeChange,
-  isDarkThemeSetted,
-  onCreatePhone,
-  onEditPhone,
-  onDeletePhone,
-}: ToolbarProps) => {
+export const Toolbar = ({ searchValue, onSearch, onCreatePhone, onEditPhone, onDeletePhone }: ToolbarProps) => {
+  const [isDarkThemeSetted, setIsDarkThemeSetted] = useCookieState('darkTheme', { defaultValue: 'false' })
   const [searchQuery, setSearchQuery] = useState(searchValue)
   const debouncedSearchValue = useDebounce(searchQuery || '', { wait: 300 })
 
@@ -89,7 +81,11 @@ export const Toolbar = ({
           <DarkThemeToggle
             aria-label="Toggle dark theme"
             pressed={isDarkThemeSetted === 'true'}
-            onPressedChange={onThemeChange}
+            onPressedChange={() => {
+              const darkThemeContainer = document.querySelector('#darkThemeContainer')
+              if (darkThemeContainer) darkThemeContainer.className = isDarkThemeSetted === 'true' ? darkTheme : ''
+              return setIsDarkThemeSetted(isDarkThemeSetted === 'true' ? 'false' : 'true')
+            }}
           >
             {isDarkThemeSetted === 'true' ? <LightThemeToggleIcon /> : <DarkThemeToggleIcon />}
           </DarkThemeToggle>

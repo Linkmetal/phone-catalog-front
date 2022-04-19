@@ -1,17 +1,21 @@
 import { Route, Routes } from 'react-router-dom'
+import { darkTheme, globalStyles } from 'styles/stitches.config'
 
 import { Home } from 'screens/Home'
 import { PhoneDetail } from 'screens/PhoneDetail'
-import { globalStyles } from 'styles/stitches.config'
+import { useCookieState } from 'ahooks'
 
 export const App = () => {
   globalStyles()
+  const [isDarkThemeSetted] = useCookieState('darkTheme', { defaultValue: 'false' })
 
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/phone/:id" element={<PhoneDetail />} />
-    </Routes>
+    <div id="darkThemeContainer" className={isDarkThemeSetted === 'true' ? darkTheme : undefined}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/phone/:id" element={<PhoneDetail />} />
+      </Routes>
+    </div>
   )
 }
 

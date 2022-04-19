@@ -8,8 +8,7 @@ export const PhoneDetailRoot = styled('div', {
 export const DetailsGridContainer = styled('section', {
   backgroundColor: '$accentBgHover',
   display: 'grid',
-  borderRadius: '$4',
-  height: '85%',
+  height: '80%',
   '& img': {
     height: '50%',
   },
@@ -19,6 +18,12 @@ export const DetailsGridContainer = styled('section', {
   '@lg': {
     gridTemplateColumns: '0.40fr 0.60fr',
   },
+})
+
+export const GoBackContainer = styled(FlexContainer, {
+  padding: '$2',
+  backgroundColor: '$accentBgHover',
+  '& > svg': { color: '$accentText' },
 })
 
 export const DetailField = styled(FlexContainer, {
