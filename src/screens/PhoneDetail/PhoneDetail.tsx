@@ -8,6 +8,7 @@ import {
 } from '@radix-ui/react-icons'
 import { Button, FlexContainer, Img, Layout } from 'styles/common.styles'
 import { DetailField, DetailsGridContainer } from './PhoneDetail.styles'
+import { useCookieState, useTitle } from 'ahooks'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { Header } from 'components/Header'
@@ -20,11 +21,10 @@ import { darkTheme } from 'styles/stitches.config'
 import { useDeletePhone } from 'hooks/mutations/useDeletePhone'
 import { useFetchPhoneDetails } from 'hooks/queries/useFetchPhoneDetails'
 import { useState } from 'react'
-import { useTitle } from 'ahooks'
 import { useToastContext } from 'contexts/ToastContext'
 
 export const PhoneDetail = () => {
-  const [isDarkThemeSetted, setIsDarkThemeSetted] = useState<boolean>(false)
+  const [isDarkThemeSetted, setIsDarkThemeSetted] = useCookieState('darkTheme', { defaultValue: 'false' })
   const [isEditPhoneModalOpen, setIsEditPhoneModalOpen] = useState<boolean>(false)
   const [isDeletePhoneModalOpen, setIsDeletePhoneModalOpen] = useState<boolean>(false)
   const { setToastMessage } = useToastContext()
@@ -63,14 +63,14 @@ export const PhoneDetail = () => {
 
   if (!phone) return null
   return (
-    <PhoneDetailRoot className={isDarkThemeSetted ? darkTheme : undefined}>
+    <PhoneDetailRoot className={isDarkThemeSetted === 'true' ? darkTheme : undefined}>
       <Layout>
         <Header />
         <Toolbar
           onEditPhone={() => setIsEditPhoneModalOpen(!isEditPhoneModalOpen)}
           onDeletePhone={() => setIsDeletePhoneModalOpen(!isDeletePhoneModalOpen)}
-          isDarkThemeSetted={isDarkThemeSetted}
-          onThemeChange={setIsDarkThemeSetted}
+          isDarkThemeSetted={isDarkThemeSetted || 'false'}
+          onThemeChange={() => setIsDarkThemeSetted(isDarkThemeSetted === 'true' ? 'false' : 'true')}
         />
         <DetailsGridContainer>
           <FlexContainer direction="column" css={{ height: '85%', backgroundColor: '$whiteA11' }} justify="start">

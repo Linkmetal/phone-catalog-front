@@ -9,7 +9,7 @@ describe('Toolbar', () => {
   it('renders properly', () => {
     render(
       <MemoryRouter>
-        <Toolbar isDarkThemeSetted={false} onThemeChange={() => undefined} searchValue="" onSearch={() => undefined} />,
+        <Toolbar isDarkThemeSetted="false" onThemeChange={() => undefined} searchValue="" onSearch={() => undefined} />,
       </MemoryRouter>,
     )
 
@@ -21,7 +21,7 @@ describe('Toolbar', () => {
     render(
       <MemoryRouter>
         <Toolbar
-          isDarkThemeSetted={false}
+          isDarkThemeSetted="false"
           onThemeChange={onThemeChangeMock}
           searchValue=""
           onSearch={() => undefined}
@@ -38,7 +38,7 @@ describe('Toolbar', () => {
     const onSearchMock = jest.fn()
     render(
       <MemoryRouter>
-        <Toolbar isDarkThemeSetted={false} onThemeChange={() => undefined} searchValue="" onSearch={onSearchMock} />
+        <Toolbar isDarkThemeSetted="false" onThemeChange={() => undefined} searchValue="" onSearch={onSearchMock} />
       </MemoryRouter>,
     )
 
@@ -54,7 +54,7 @@ describe('Toolbar', () => {
   it('does not have basic accessibility issues', async () => {
     const { container } = render(
       <MemoryRouter>
-        <Toolbar isDarkThemeSetted={false} onThemeChange={() => undefined} searchValue="" onSearch={() => undefined} />,
+        <Toolbar isDarkThemeSetted="false" onThemeChange={() => undefined} searchValue="" onSearch={() => undefined} />,
       </MemoryRouter>,
     )
     const results = await axe(container)

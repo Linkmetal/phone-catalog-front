@@ -14,7 +14,7 @@ import { useState } from 'react'
 
 export type ToolbarProps = {
   searchValue?: string
-  isDarkThemeSetted: boolean
+  isDarkThemeSetted: string
   onSearch?: (searchValue: string) => void
   onThemeChange: (value: boolean) => void
   onCreatePhone?: () => void
@@ -86,8 +86,12 @@ export const Toolbar = ({
           </FlexContainer>
         )}
         <FlexContainer justify="end">
-          <DarkThemeToggle aria-label="Toggle dark theme" pressed={isDarkThemeSetted} onPressedChange={onThemeChange}>
-            {isDarkThemeSetted ? <LightThemeToggleIcon /> : <DarkThemeToggleIcon />}
+          <DarkThemeToggle
+            aria-label="Toggle dark theme"
+            pressed={isDarkThemeSetted === 'true'}
+            onPressedChange={onThemeChange}
+          >
+            {isDarkThemeSetted === 'true' ? <LightThemeToggleIcon /> : <DarkThemeToggleIcon />}
           </DarkThemeToggle>
         </FlexContainer>
       </FlexContainer>
