@@ -81,7 +81,7 @@ export const PhoneDetail = () => {
           <FlexContainer direction="column" css={{ height: '85%', backgroundColor: '$whiteA11' }} justify="start">
             <Img
               // TODO: remove this image validation
-              src={phone.imageFileName.startsWith('http') ? phone.imageFileName : '/placeholder.png'}
+              src={phone.imageSrc.startsWith('http') ? phone.imageSrc : '/placeholder.png'}
               role="presentation"
               css={{ padding: '$4' }}
             />

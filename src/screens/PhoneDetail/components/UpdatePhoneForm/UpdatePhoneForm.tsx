@@ -26,7 +26,7 @@ export const UpdatePhoneForm = ({ phone, onSuccess, onError }: PhoneListProps) =
   const { addPhoneImage } = useAddPhoneImage()
 
   const onSubmit = (values: UpdatePhoneFormValues) => {
-    const phoneValues = { ...values, imageFileName: phone.imageFileName } as AddPhone.Variables
+    const phoneValues = { ...values, imageSrc: phone.imageSrc } as AddPhone.Variables
     editPhone(phoneValues, {
       onSuccess: (response) => {
         if (!values.image) return onSuccess()

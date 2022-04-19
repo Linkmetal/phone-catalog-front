@@ -19,7 +19,7 @@ export const PhoneListCard = ({ phone }: PhoneListProps) => {
             <AspectRatio.Root ratio={9 / 16}>
               <Img
                 // TODO: remove this image validation
-                src={phone.imageFileName.startsWith('http') ? phone.imageFileName : '/placeholder.png'}
+                src={phone.imageSrc.startsWith('http') ? phone.imageSrc : '/placeholder.png'}
                 role="presentation"
               />
             </AspectRatio.Root>

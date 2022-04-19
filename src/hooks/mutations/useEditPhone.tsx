@@ -7,7 +7,7 @@ import { PhonesRepository } from 'network/repositories/PhonesRepository'
 
 export namespace EditPhone {
   export type Response = Phone
-  export type Variables = Omit<Phone, 'id' | 'imageFileName'>
+  export type Variables = Omit<Phone, 'id' | 'imageSrc'>
   export type Error = AxiosError<ApiError>
   export type Options = UseMutationOptions<Response, Error, Variables>
 }
