@@ -10,7 +10,7 @@ export const App = () => {
   const [isDarkThemeSetted] = useCookieState('darkTheme', { defaultValue: 'false' })
 
   return (
-    <div id="darkThemeContainer" className={isDarkThemeSetted === 'true' ? darkTheme : undefined}>
+    <div id="darkThemeContainer" className={isDarkThemeSetted === 'true' ? darkTheme : ''}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/phone/:id" element={<PhoneDetail />} />

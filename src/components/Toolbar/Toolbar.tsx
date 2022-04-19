@@ -7,11 +7,11 @@ import {
 } from 'components/Toolbar/Toolbar.styles'
 import { Pencil2Icon, PlusCircledIcon, TrashIcon } from '@radix-ui/react-icons'
 import { useCookieState, useDebounce, useUpdateEffect } from 'ahooks'
+import { useEffect, useState } from 'react'
 
 import { TextInput } from 'components/TextInput'
 import { Typography } from 'components/Typography'
 import { darkTheme } from 'styles/stitches.config'
-import { useState } from 'react'
 
 export type ToolbarProps = {
   searchValue?: string
@@ -25,10 +25,16 @@ export const Toolbar = ({ searchValue, onSearch, onCreatePhone, onEditPhone, onD
   const [isDarkThemeSetted, setIsDarkThemeSetted] = useCookieState('darkTheme', { defaultValue: 'false' })
   const [searchQuery, setSearchQuery] = useState(searchValue)
   const debouncedSearchValue = useDebounce(searchQuery || '', { wait: 300 })
+  const darkThemeContainer = document.querySelector('#darkThemeContainer')
 
   useUpdateEffect(() => {
     if (onSearch) onSearch(debouncedSearchValue)
   }, [debouncedSearchValue])
+
+  // NOTE: This useEffect is for updating the className on App.tsx to toggle the darkTheme programatically
+  useEffect(() => {
+    if (darkThemeContainer) darkThemeContainer.className = isDarkThemeSetted === 'true' ? darkTheme : ''
+  }, [isDarkThemeSetted])
 
   return (
     <ToolbarRoot>
@@ -81,11 +87,7 @@ export const Toolbar = ({ searchValue, onSearch, onCreatePhone, onEditPhone, onD
           <DarkThemeToggle
             aria-label="Toggle dark theme"
             pressed={isDarkThemeSetted === 'true'}
-            onPressedChange={() => {
-              const darkThemeContainer = document.querySelector('#darkThemeContainer')
-              if (darkThemeContainer) darkThemeContainer.className = isDarkThemeSetted === 'true' ? darkTheme : ''
-              return setIsDarkThemeSetted(isDarkThemeSetted === 'true' ? 'false' : 'true')
-            }}
+            onPressedChange={() => setIsDarkThemeSetted(isDarkThemeSetted === 'true' ? 'false' : 'true')}
           >
             {isDarkThemeSetted === 'true' ? <LightThemeToggleIcon /> : <DarkThemeToggleIcon />}
           </DarkThemeToggle>
