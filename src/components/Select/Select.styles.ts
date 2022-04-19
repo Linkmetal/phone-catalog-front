@@ -3,9 +3,7 @@ import * as RadixSelect from '@radix-ui/react-select'
 import { FlexContainer } from 'styles/common.styles'
 import { styled } from 'styles/stitches.config'
 
-export const SelectRoot = styled(FlexContainer, {
-  paddingBottom: '$4',
-})
+export const SelectRoot = styled(FlexContainer, {})
 
 export const RadixSelectRoot = styled(RadixSelect.Root, {})
 

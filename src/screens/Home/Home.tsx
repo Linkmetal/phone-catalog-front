@@ -12,11 +12,13 @@ import { darkTheme } from 'styles/stitches.config'
 import { useFetchPhones } from 'hooks/queries/useFetchPhones'
 import { useState } from 'react'
 import { useTitle } from 'ahooks'
+import { useToastContext } from 'contexts/ToastContext'
 
 const PAGE_SIZE = 9
 
 export const Home = () => {
   useTitle('Phone Catalog - List')
+  const { setToastMessage } = useToastContext()
   const [page, setPage] = useState(1)
   const [phoneList, setPhoneList] = useState<Phone[]>([])
   const [isDarkThemeSetted, setIsDarkThemeSetted] = useState<boolean>(false)
@@ -61,7 +63,7 @@ export const Home = () => {
         <Header />
         <Toolbar
           isDarkThemeSetted={isDarkThemeSetted}
-          onThemeChange={setIsDarkThemeSetted}
+          onThemeChange={() => setIsDarkThemeSetted(!isDarkThemeSetted)}
           onSearch={(searchQuery) => {
             resetList()
             setFilters({ ...filters, searchQuery })
@@ -90,9 +92,21 @@ export const Home = () => {
 
       <Modal onClose={() => setIsCreatePhoneModalOpen(false)} open={isCreatePhoneModalOpen}>
         <CreatePhoneForm
-          onCancel={() => undefined}
-          onError={() => undefined}
+          onError={(error: string) => {
+            setToastMessage({
+              title: 'Error while creating phone',
+              description: error,
+              variant: 'danger',
+              delay: 3000,
+            })
+          }}
           onSuccess={() => {
+            setToastMessage({
+              title: 'Sucess',
+              description: 'Phone created successfully',
+              variant: 'success',
+              delay: 3000,
+            })
             setIsCreatePhoneModalOpen(false)
             refetchPhones()
           }}

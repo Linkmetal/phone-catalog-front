@@ -35,7 +35,7 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
     return (
       <FileInputRoot>
         <Label.Root role="presentation" aria-label={label} asChild htmlFor={id}>
-          <Typography size="caption" color="accentTextContrast">
+          <Typography size="body" color="accentTextContrast">
             {label}
           </Typography>
         </Label.Root>

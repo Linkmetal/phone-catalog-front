@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import App from './App'
 import { BrowserRouter } from 'react-router-dom'
 import React from 'react'
+import { ToastMessageProvider } from 'contexts/ToastContext'
 import { createRoot } from 'react-dom/client'
 import reportWebVitals from './reportWebVitals'
 
@@ -13,9 +14,11 @@ if (container)
   createRoot(container).render(
     <React.StrictMode>
       <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+        <ToastMessageProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </ToastMessageProvider>
       </QueryClientProvider>
     </React.StrictMode>,
   )

@@ -22,9 +22,10 @@ export type SelectProps<T> = {
   label: string
   placeholder: string
   onChange: (value: string) => void
+  error: string
 }
 
-export function Select<T extends string>({ id, values, value, label, placeholder, onChange }: SelectProps<T>) {
+export function Select<T extends string>({ id, values, value, label, placeholder, onChange, error }: SelectProps<T>) {
   return (
     <SelectRoot direction="column" align="start">
       <Label.Root role="presentation" aria-label={label} asChild htmlFor={id}>
@@ -37,6 +38,9 @@ export function Select<T extends string>({ id, values, value, label, placeholder
           <Value>{value || placeholder}</Value>
           <Icon />
         </Trigger>
+        <Typography size="caption" color="dangerText" css={{ paddingY: '$2' }}>
+          {error}
+        </Typography>
 
         <Content>
           <ScrollUpButton />

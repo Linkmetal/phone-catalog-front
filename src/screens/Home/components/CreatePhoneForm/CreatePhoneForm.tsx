@@ -1,9 +1,9 @@
 import { AddPhone, useAddPhone } from 'hooks/mutations/useAddPhone'
 import { AddPhoneImage, useAddPhoneImage } from 'hooks/mutations/useAddPhoneImage'
+import { Button, FlexContainer } from 'styles/common.styles'
 import { PhoneManufacturer, PhoneRamMemory } from 'types/phone'
 import { PhoneManufacturerValues, PhoneRamMemoryValues } from 'constants/phone'
 
-import { Button } from 'styles/common.styles'
 import { CreatePhoneFormRoot } from './CreatePhoneForm.styles'
 import { FileInput } from 'components/FileInput'
 import { FormErrors } from 'types/FormErrors'
@@ -14,13 +14,12 @@ import { useFormik } from 'formik'
 
 export type PhoneListProps = {
   onSuccess: () => void
-  onError: () => void
-  onCancel: () => void
+  onError: (error: string) => void
 }
 
 export type CreatePhoneFormValues = Partial<AddPhone.Variables & AddPhoneImage.Variables>
 
-export const CreatePhoneForm = ({ onSuccess }: PhoneListProps) => {
+export const CreatePhoneForm = ({ onSuccess, onError }: PhoneListProps) => {
   const { addPhone } = useAddPhone()
   const { addPhoneImage } = useAddPhoneImage()
 
@@ -33,9 +32,11 @@ export const CreatePhoneForm = ({ onSuccess }: PhoneListProps) => {
           { id: response.id, image: values.image },
           {
             onSuccess: () => onSuccess(),
+            onError: () => onError('Error while uploading image'),
           },
         )
       },
+      onError: () => onError('Error while creating phone'),
     })
   }
 
@@ -114,6 +115,7 @@ export const CreatePhoneForm = ({ onSuccess }: PhoneListProps) => {
           label="Name"
         />
         <Select
+          error={errors.manufacturer || ''}
           placeholder="Select manufacturer"
           value={values?.manufacturer || ''}
           values={[...PhoneManufacturerValues]}
@@ -129,6 +131,7 @@ export const CreatePhoneForm = ({ onSuccess }: PhoneListProps) => {
           label="Proccessor"
         />
         <Select
+          error={errors.ram || ''}
           placeholder="Select RAM"
           value={values?.ram || ''}
           values={[...PhoneRamMemoryValues]}
@@ -172,9 +175,11 @@ export const CreatePhoneForm = ({ onSuccess }: PhoneListProps) => {
           id="image"
           label="Image"
         />
-        <Button type="submit">
-          <Typography color="whiteA12">Submit</Typography>
-        </Button>
+        <FlexContainer justify="end">
+          <Button type="submit">
+            <Typography color="whiteA12">Submit</Typography>
+          </Button>
+        </FlexContainer>
       </form>
     </CreatePhoneFormRoot>
   )
