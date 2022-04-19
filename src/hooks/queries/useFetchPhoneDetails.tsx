@@ -1,5 +1,7 @@
 import { UseQueryOptions, useQuery } from 'react-query'
 
+import { ApiError } from 'types/Errors'
+import { AxiosError } from 'axios'
 import { Phone } from 'types/phone'
 import { PhonesRepository } from 'network/repositories/PhonesRepository'
 
@@ -10,7 +12,7 @@ export type FetchPhoneDetailsParams = {
 export namespace FetchPhoneDetails {
   export type Params = FetchPhoneDetailsParams
   export type Response = Phone
-  export type Error = unknown
+  export type Error = AxiosError<ApiError>
   export type Options = UseQueryOptions<Response, Error>
 }
 

@@ -1,37 +1,39 @@
-import { AddPhone, useAddPhone } from 'hooks/mutations/useAddPhone'
 import { AddPhoneImage, useAddPhoneImage } from 'hooks/mutations/useAddPhoneImage'
 import { ApiError, FormErrors } from 'types/Errors'
 import { Button, FlexContainer } from 'styles/common.styles'
-import { PhoneManufacturer, PhoneRamMemory } from 'types/phone'
+import { Phone, PhoneManufacturer, PhoneRamMemory } from 'types/phone'
 import { PhoneManufacturerValues, PhoneRamMemoryValues } from 'constants/phone'
 
-import { CreatePhoneFormRoot } from './CreatePhoneForm.styles'
+import { AddPhone } from 'hooks/mutations/useAddPhone'
 import { FileInput } from 'components/FileInput'
 import { Select } from 'components/Select'
 import { TextInput } from 'components/TextInput'
 import { Typography } from 'components/Typography'
+import { UpdatePhoneFormRoot } from './UpdatePhoneForm.styles'
+import { useEditPhone } from 'hooks/mutations/useEditPhone'
 import { useFormik } from 'formik'
 
 export type PhoneListProps = {
+  phone: Phone
   onSuccess: () => void
   onError: (error: ApiError) => void
 }
 
-export type CreatePhoneFormValues = Partial<AddPhone.Variables & AddPhoneImage.Variables>
+export type UpdatePhoneFormValues = Partial<AddPhone.Variables & AddPhoneImage.Variables>
 
-export const CreatePhoneForm = ({ onSuccess, onError }: PhoneListProps) => {
-  const { addPhone } = useAddPhone()
+export const UpdatePhoneForm = ({ phone, onSuccess, onError }: PhoneListProps) => {
+  const { editPhone } = useEditPhone(phone.id)
   const { addPhoneImage } = useAddPhoneImage()
 
-  const onSubmit = (values: CreatePhoneFormValues) => {
-    const phoneValues = { ...values } as AddPhone.Variables
-    addPhone(phoneValues, {
+  const onSubmit = (values: UpdatePhoneFormValues) => {
+    const phoneValues = { ...values, imageFileName: phone.imageFileName } as AddPhone.Variables
+    editPhone(phoneValues, {
       onSuccess: (response) => {
-        if (!values.image) return
+        if (!values.image) return onSuccess()
         addPhoneImage(
           { id: response.id, image: values.image },
           {
-            onSuccess: () => onSuccess(),
+            onSuccess,
             onError: (error) => {
               if (error.response) return onError(error.response.data)
             },
@@ -44,20 +46,20 @@ export const CreatePhoneForm = ({ onSuccess, onError }: PhoneListProps) => {
     })
   }
 
-  const initialValues: CreatePhoneFormValues = {
-    name: undefined,
-    description: undefined,
-    manufacturer: undefined,
-    color: undefined,
+  const initialValues: UpdatePhoneFormValues = {
+    name: phone.name,
+    description: phone.description,
+    manufacturer: phone.manufacturer,
+    color: phone.color,
     image: undefined,
-    price: undefined,
-    ram: undefined,
-    processor: undefined,
-    screen: undefined,
+    price: phone.price,
+    ram: phone.ram,
+    processor: phone.processor,
+    screen: phone.screen,
   }
 
-  const validations = (values: CreatePhoneFormValues) => {
-    const errors: FormErrors<CreatePhoneFormValues> = {}
+  const validations = (values: UpdatePhoneFormValues) => {
+    const errors: FormErrors<UpdatePhoneFormValues> = {}
 
     if (!values.name) {
       errors.name = 'Required'
@@ -93,14 +95,10 @@ export const CreatePhoneForm = ({ onSuccess, onError }: PhoneListProps) => {
       errors.color = 'Required'
     }
 
-    if (!values.image) {
-      errors.image = 'Required'
-    }
-
     return errors
   }
 
-  const { values, errors, handleSubmit, setValues } = useFormik<CreatePhoneFormValues>({
+  const { values, errors, handleSubmit, setValues } = useFormik<UpdatePhoneFormValues>({
     initialValues,
     onSubmit,
     validate: validations,
@@ -110,7 +108,7 @@ export const CreatePhoneForm = ({ onSuccess, onError }: PhoneListProps) => {
   })
 
   return (
-    <CreatePhoneFormRoot css={{ width: '250px' }} direction="column" align="start">
+    <UpdatePhoneFormRoot css={{ width: '250px' }} direction="column" align="start">
       <Typography css={{ paddingBottom: '$6' }} size="h3">
         Create Phone
       </Typography>
@@ -189,8 +187,8 @@ export const CreatePhoneForm = ({ onSuccess, onError }: PhoneListProps) => {
           </Button>
         </FlexContainer>
       </form>
-    </CreatePhoneFormRoot>
+    </UpdatePhoneFormRoot>
   )
 }
 
-export default CreatePhoneFormRoot
+export default UpdatePhoneFormRoot

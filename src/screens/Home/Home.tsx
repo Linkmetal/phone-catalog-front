@@ -92,20 +92,18 @@ export const Home = () => {
 
       <Modal onClose={() => setIsCreatePhoneModalOpen(false)} open={isCreatePhoneModalOpen}>
         <CreatePhoneForm
-          onError={(error: string) => {
+          onError={(error) => {
             setToastMessage({
-              title: 'Error while creating phone',
-              description: error,
+              title: error.error,
+              description: `Status: ${error.statusCode} - ${error.message}`,
               variant: 'danger',
-              delay: 3000,
             })
           }}
           onSuccess={() => {
             setToastMessage({
-              title: 'Sucess',
+              title: 'Success',
               description: 'Phone created successfully',
               variant: 'success',
-              delay: 3000,
             })
             setIsCreatePhoneModalOpen(false)
             refetchPhones()

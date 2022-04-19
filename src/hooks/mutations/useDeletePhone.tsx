@@ -1,11 +1,13 @@
 import { UseMutationOptions, useMutation } from 'react-query'
 
+import { ApiError } from 'types/Errors'
+import { AxiosError } from 'axios'
 import { PhonesRepository } from 'network/repositories/PhonesRepository'
 
 export namespace DeletePhone {
   export type Response = true
   export type Params = { id: string }
-  export type Error = unknown
+  export type Error = AxiosError<ApiError>
   export type Options = UseMutationOptions<Response, Error, { id: string }>
 }
 

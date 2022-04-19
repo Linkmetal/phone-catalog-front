@@ -5,9 +5,9 @@ import {
   LightThemeToggleIcon,
   ToolbarRoot,
 } from 'components/Toolbar/Toolbar.styles'
+import { Pencil2Icon, PlusCircledIcon, TrashIcon } from '@radix-ui/react-icons'
 import { useDebounce, useUpdateEffect } from 'ahooks'
 
-import { PlusCircledIcon } from '@radix-ui/react-icons'
 import { TextInput } from 'components/TextInput'
 import { Typography } from 'components/Typography'
 import { useState } from 'react'
@@ -18,9 +18,19 @@ export type ToolbarProps = {
   onSearch?: (searchValue: string) => void
   onThemeChange: (value: boolean) => void
   onCreatePhone?: () => void
+  onEditPhone?: () => void
+  onDeletePhone?: () => void
 }
 
-export const Toolbar = ({ searchValue, onSearch, onThemeChange, isDarkThemeSetted, onCreatePhone }: ToolbarProps) => {
+export const Toolbar = ({
+  searchValue,
+  onSearch,
+  onThemeChange,
+  isDarkThemeSetted,
+  onCreatePhone,
+  onEditPhone,
+  onDeletePhone,
+}: ToolbarProps) => {
   const [searchQuery, setSearchQuery] = useState(searchValue)
   const debouncedSearchValue = useDebounce(searchQuery || '', { wait: 300 })
 
@@ -31,13 +41,33 @@ export const Toolbar = ({ searchValue, onSearch, onThemeChange, isDarkThemeSette
   return (
     <ToolbarRoot>
       <FlexContainer justify="spaceBetween" css={{ height: '100%', width: '100%' }}>
-        <FlexContainer justify="start">
+        <FlexContainer css={{ gap: '$4' }} justify="start" align="center">
           {!!onCreatePhone && (
             <Button onClick={onCreatePhone}>
               <FlexContainer align="center">
                 <PlusCircledIcon color="white" />
-                <Typography css={{ marginLeft: '$1' }} color="whiteA12">
+                <Typography size="button" css={{ marginLeft: '$1' }} color="whiteA12">
                   Create Phone
+                </Typography>
+              </FlexContainer>
+            </Button>
+          )}
+          {!!onEditPhone && (
+            <Button onClick={onEditPhone}>
+              <FlexContainer align="center">
+                <Pencil2Icon color="white" />
+                <Typography size="button" css={{ marginLeft: '$1' }} color="whiteA12">
+                  Edit Phone
+                </Typography>
+              </FlexContainer>
+            </Button>
+          )}
+          {!!onDeletePhone && (
+            <Button variant="danger" onClick={onDeletePhone}>
+              <FlexContainer align="center">
+                <TrashIcon color="white" />
+                <Typography size="button" css={{ marginLeft: '$1' }} color="whiteA12">
+                  Delete Phone
                 </Typography>
               </FlexContainer>
             </Button>

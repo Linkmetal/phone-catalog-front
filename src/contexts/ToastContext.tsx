@@ -23,7 +23,7 @@ export const ToastMessageProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     if (!toastMessage) return
-    setTimeout(() => setToastMessage(null), toastMessage?.delay || 1000)
+    setTimeout(() => setToastMessage(null), toastMessage?.delay || 5000)
   }, [toastMessage])
 
   return (

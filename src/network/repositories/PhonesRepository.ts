@@ -17,7 +17,7 @@ export const PhonesRepository = {
     return ApiClient.post<AddPhone.Variables, AddPhone.Response>('/phones', data)
   },
   edit(id: string, data: EditPhone.Variables) {
-    return ApiClient.patch<EditPhone.Variables, EditPhone.Response>(`/phones/${id}`, { data })
+    return ApiClient.put<EditPhone.Variables, EditPhone.Response>(`/phones/${id}`, data)
   },
   delete(id: string) {
     return ApiClient.delete<DeletePhone.Params, DeletePhone.Response>(`/phones/${id}`)

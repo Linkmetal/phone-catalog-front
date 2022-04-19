@@ -6,31 +6,72 @@ import {
   RulerSquareIcon,
   ShadowInnerIcon,
 } from '@radix-ui/react-icons'
+import { Button, FlexContainer, Img, Layout } from 'styles/common.styles'
 import { DetailField, DetailsGridContainer } from './PhoneDetail.styles'
-import { FlexContainer, Img, Layout } from 'styles/common.styles'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { Header } from 'components/Header'
+import { Modal } from 'components/Modal'
 import { PhoneDetailRoot } from 'screens/PhoneDetail/PhoneDetail.styles'
 import { Toolbar } from 'components/Toolbar'
 import { Typography } from 'components/Typography'
+import { UpdatePhoneForm } from 'screens/PhoneDetail/components/UpdatePhoneForm'
 import { darkTheme } from 'styles/stitches.config'
+import { useDeletePhone } from 'hooks/mutations/useDeletePhone'
 import { useFetchPhoneDetails } from 'hooks/queries/useFetchPhoneDetails'
-import { useParams } from 'react-router-dom'
 import { useState } from 'react'
 import { useTitle } from 'ahooks'
+import { useToastContext } from 'contexts/ToastContext'
 
 export const PhoneDetail = () => {
   const [isDarkThemeSetted, setIsDarkThemeSetted] = useState<boolean>(false)
+  const [isEditPhoneModalOpen, setIsEditPhoneModalOpen] = useState<boolean>(false)
+  const [isDeletePhoneModalOpen, setIsDeletePhoneModalOpen] = useState<boolean>(false)
+  const { setToastMessage } = useToastContext()
   const params = useParams()
-  const { phone } = useFetchPhoneDetails({ id: params?.id || '' }, { enabled: !!params?.id })
+  const { phone, refetch: refetchPhone } = useFetchPhoneDetails({ id: params?.id || '' }, { enabled: !!params?.id })
+  const { deletePhone } = useDeletePhone()
   useTitle(`Phone Catalog - ${phone?.name}`)
+  const navigate = useNavigate()
+
+  const handleDeletePhone = () => {
+    if (!phone) return
+    deletePhone(
+      { id: phone.id },
+      {
+        onSuccess: () => {
+          setIsDeletePhoneModalOpen(!isDeletePhoneModalOpen)
+          setToastMessage({
+            title: 'Success',
+            description: 'Phone deleted successfully',
+            variant: 'success',
+          })
+          navigate('/')
+        },
+        onError: ({ response }) => {
+          setIsDeletePhoneModalOpen(!isDeletePhoneModalOpen)
+          if (response)
+            setToastMessage({
+              title: response.data.error,
+              description: `Status: ${response.data.statusCode} - ${response.data.message}`,
+              variant: 'danger',
+            })
+        },
+      },
+    )
+  }
 
   if (!phone) return null
   return (
     <PhoneDetailRoot className={isDarkThemeSetted ? darkTheme : undefined}>
       <Layout>
         <Header />
-        <Toolbar isDarkThemeSetted={isDarkThemeSetted} onThemeChange={setIsDarkThemeSetted} />
+        <Toolbar
+          onEditPhone={() => setIsEditPhoneModalOpen(!isEditPhoneModalOpen)}
+          onDeletePhone={() => setIsDeletePhoneModalOpen(!isDeletePhoneModalOpen)}
+          isDarkThemeSetted={isDarkThemeSetted}
+          onThemeChange={setIsDarkThemeSetted}
+        />
         <DetailsGridContainer>
           <FlexContainer direction="column" css={{ height: '85%', backgroundColor: '$whiteA11' }} justify="start">
             <Img
@@ -129,6 +170,40 @@ export const PhoneDetail = () => {
           </FlexContainer>
         </DetailsGridContainer>
       </Layout>
+      <Modal onClose={() => setIsEditPhoneModalOpen(false)} open={isEditPhoneModalOpen}>
+        <UpdatePhoneForm
+          phone={phone}
+          onError={(error) => {
+            setToastMessage({
+              title: error.error,
+              description: `Status: ${error.statusCode} - ${error.message}`,
+              variant: 'danger',
+            })
+          }}
+          onSuccess={() => {
+            setToastMessage({
+              title: 'Success',
+              description: 'Phone created successfully',
+              variant: 'success',
+            })
+            setIsEditPhoneModalOpen(false)
+            refetchPhone()
+          }}
+        />
+      </Modal>
+      <Modal onClose={() => setIsDeletePhoneModalOpen(false)} open={isDeletePhoneModalOpen}>
+        <FlexContainer css={{ paddingBottom: '$4' }} direction="column" align="start" justify="spaceBetween">
+          <Typography size="h3">Delete Phone</Typography>
+          <Typography size="h5" color="dangerText">
+            CAUTION: This action cannot be undone!
+          </Typography>
+        </FlexContainer>
+        <FlexContainer justify="end">
+          <Button onClick={handleDeletePhone} variant="danger">
+            <Typography color="whiteA12">Delete</Typography>
+          </Button>
+        </FlexContainer>
+      </Modal>
     </PhoneDetailRoot>
   )
 }

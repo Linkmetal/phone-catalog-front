@@ -131,7 +131,7 @@ export const Loader = styled('div', {
 export const Button = styled('button', {
   all: 'unset',
   boxSizing: 'border-box',
-  paddingY: '$2',
+  paddingY: '$1',
   paddingX: '$4',
   borderRadius: '$2',
   backgroundColor: '$accentSolid',
