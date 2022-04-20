@@ -33,7 +33,7 @@ export const InputWrapper = styled('div', {
 })
 
 export const TextArea = styled('textarea', {
-  height: '$12',
+  height: '$10',
   width: '100%',
   appearance: 'none',
   border: 'none',

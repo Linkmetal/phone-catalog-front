@@ -1,9 +1,9 @@
-import { Button, FlexContainer, Loader } from 'styles/common.styles'
+import { Button, Loader } from 'styles/common.styles'
+import { LoadMoreContainer, LoaderContainer, PhoneListRoot } from './PhoneList.styles'
 
 import { Label } from '@radix-ui/react-label'
 import { Phone } from 'types/phone'
 import { PhoneListCard } from 'screens/Home/components/PhoneListCard'
-import { PhoneListRoot } from './PhoneList.styles'
 import { Typography } from 'components/Typography'
 
 export type PhoneListProps = {
@@ -19,23 +19,20 @@ export const PhoneList = ({ phones, onLoadMore, isLoading, hasReachedTotal }: Ph
       {phones.map((phone) => (
         <PhoneListCard key={phone.id} phone={phone} />
       ))}
-      {!hasReachedTotal && (
-        <>
-          {isLoading && (
-            <FlexContainer css={{ gridColumn: '1 / 4', gridRow: 'span 8' }}>
-              <Loader />
-            </FlexContainer>
-          )}
-          {!isLoading && (
-            <FlexContainer css={{ gridColumn: '1 / 4', gridRowEnd: 'span 8' }}>
-              <Button onClick={onLoadMore}>
-                <Label role="button" aria-label="Load more phones">
-                  <Typography color="whiteA12">Load more</Typography>
-                </Label>
-              </Button>
-            </FlexContainer>
-          )}
-        </>
+
+      {!hasReachedTotal && isLoading && (
+        <LoaderContainer>
+          <Loader />
+        </LoaderContainer>
+      )}
+      {!hasReachedTotal && !isLoading && (
+        <LoadMoreContainer>
+          <Button onClick={onLoadMore}>
+            <Label role="button" aria-label="Load more phones">
+              <Typography color="whiteA12">Load more</Typography>
+            </Label>
+          </Button>
+        </LoadMoreContainer>
       )}
     </PhoneListRoot>
   )

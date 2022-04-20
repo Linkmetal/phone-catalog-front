@@ -184,8 +184,10 @@ export const UpdatePhoneForm = ({ phone, onSuccess, onError }: PhoneListProps) =
           label="Image"
         />
         <FlexContainer justify="end">
-          <Button type="submit">
-            <Typography color="whiteA12">Submit</Typography>
+          <Button size="large" type="submit">
+            <Typography size="h5" color="whiteA12">
+              Submit
+            </Typography>
           </Button>
         </FlexContainer>
       </form>

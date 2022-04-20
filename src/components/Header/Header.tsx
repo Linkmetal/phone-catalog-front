@@ -8,7 +8,7 @@ export const Header = () => {
     <HeaderRoot>
       <FlexContainer css={{ height: '100%', width: '100%' }}>
         <MobileHeaderIcon />
-        <Typography weight="extraBold" color="accentTextContrast" size="h1">
+        <Typography weight="extraBold" color="accentTextContrast" size="h2">
           PHONE CATALOG
         </Typography>
       </FlexContainer>

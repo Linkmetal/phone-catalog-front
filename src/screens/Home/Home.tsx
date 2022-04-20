@@ -67,7 +67,7 @@ export const Home = () => {
           searchValue={filters.searchQuery}
           onCreatePhone={() => setIsCreatePhoneModalOpen(!isCreatePhoneModalOpen)}
         />
-        <GridContainer css={{ height: '85%' }}>
+        <GridContainer css={{ height: '84%' }}>
           <PhoneFilters
             onFiltersChange={(values) => {
               resetList()

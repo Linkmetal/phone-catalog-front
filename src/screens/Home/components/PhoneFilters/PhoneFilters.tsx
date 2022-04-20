@@ -17,9 +17,10 @@ export type PhoneFiltersProps = {
 
 export const PhoneFilters = ({ filters, onFiltersChange }: PhoneFiltersProps) => {
   // NOTE: We need this state here to handle the debounce, if its handled inside the RangeInput the control gets frozen
+
   const [range, setRange] = useState<number[]>([filters.minPrice, filters.maxPrice])
   const debouncedValue = useDebounce(range, { wait: 300 })
-  const [open, setOpen] = useState<boolean>(false)
+  const [open, setOpen] = useState<boolean>(window.innerWidth > 520)
 
   useUpdateEffect(() => {
     onFiltersChange({ ...filters, minPrice: debouncedValue[0], maxPrice: debouncedValue[1] })
@@ -27,9 +28,9 @@ export const PhoneFilters = ({ filters, onFiltersChange }: PhoneFiltersProps) =>
   return (
     <FlexContainer css={{ height: '100%', width: '100%' }} direction="column" justify="start">
       <PhoneFiltersTitle>
-        <Typography size="h3">Filters</Typography>
-        {open && <ChevronUpIcon role="button" onClick={() => setOpen(!open)} />}
-        {!open && <ChevronDownIcon role="button" onClick={() => setOpen(!open)} />}
+        <Typography size="h4">Filters</Typography>
+        {open && <ChevronUpIcon aria-label="Hide filters" role="button" onClick={() => setOpen(!open)} />}
+        {!open && <ChevronDownIcon aria-label="Show filters" role="button" onClick={() => setOpen(!open)} />}
       </PhoneFiltersTitle>
       <PhoneFiltersRoot css={{ height: open ? '100%' : '0px' }} direction="column" justify="start">
         <FilterContainer direction="column" justify="start">
