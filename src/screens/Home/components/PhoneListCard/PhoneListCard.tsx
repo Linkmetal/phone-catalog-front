@@ -1,5 +1,3 @@
-import * as AspectRatio from '@radix-ui/react-aspect-ratio'
-
 import { Card, FlexContainer, Img } from 'styles/common.styles'
 import { PhoneListCardLinkWrapper, PhoneListCardRoot } from 'screens/Home/components/PhoneListCard/PhoneListCard.styles'
 
@@ -16,13 +14,11 @@ export const PhoneListCard = ({ phone }: PhoneListProps) => {
       <PhoneListCardRoot direction="column" justify="spaceAround">
         <FlexContainer css={{ width: '100%' }} direction="row" justify="spaceAround">
           <Card css={{ height: '$12', width: '$12', margin: '$4' }}>
-            <AspectRatio.Root ratio={9 / 16}>
-              <Img
-                // TODO: remove this image validation
-                src={phone.imageSrc.startsWith('http') ? phone.imageSrc : '/placeholder.png'}
-                role="presentation"
-              />
-            </AspectRatio.Root>
+            <Img
+              css={{ height: '100px', width: '100px' }}
+              src={phone.imageSrc.startsWith('http') ? phone.imageSrc : '/placeholder.png'}
+              role="presentation"
+            />
           </Card>
           <FlexContainer direction="column" css={{ flexGrow: '1', padding: '$4' }}>
             <Typography size="h5">{phone.name}</Typography>

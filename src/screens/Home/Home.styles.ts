@@ -6,6 +6,7 @@ export const HomeRoot = styled('div', {
 
 export const GridContainer = styled('section', {
   display: 'grid',
+  gridTemplateColumns: '1fr',
   '@sm': {
     gridTemplateColumns: '1fr',
   },

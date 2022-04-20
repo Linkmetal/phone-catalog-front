@@ -2,12 +2,13 @@ import * as Toggle from '@radix-ui/react-toggle'
 
 import { MoonIcon, SunIcon } from '@radix-ui/react-icons'
 
+import { Typography } from '../Typography'
 import { styled } from 'styles/stitches.config'
 
 export const ToolbarRoot = styled('div', {
   position: 'relative',
   width: '100%',
-  height: '5%',
+  height: '6%',
   backgroundColor: '$accentBgActive',
   borderColor: '$accentBorder',
   borderWidth: '$1',
@@ -33,4 +34,13 @@ export const DarkThemeToggleIcon = styled(MoonIcon, {
 
 export const LightThemeToggleIcon = styled(SunIcon, {
   color: '$accentText',
+})
+
+export const ToolbarButtonText = styled(Typography, {
+  display: 'none',
+  marginLeft: '$1',
+  color: '$whiteA12',
+  '@sm': {
+    display: 'flex',
+  },
 })

@@ -3,6 +3,7 @@ import {
   DarkThemeToggle,
   DarkThemeToggleIcon,
   LightThemeToggleIcon,
+  ToolbarButtonText,
   ToolbarRoot,
 } from 'components/Toolbar/Toolbar.styles'
 import { Pencil2Icon, PlusCircledIcon, TrashIcon } from '@radix-ui/react-icons'
@@ -10,7 +11,6 @@ import { useCookieState, useDebounce, useUpdateEffect } from 'ahooks'
 import { useEffect, useState } from 'react'
 
 import { TextInput } from 'components/TextInput'
-import { Typography } from 'components/Typography'
 import { darkTheme } from 'styles/stitches.config'
 
 export type ToolbarProps = {
@@ -44,9 +44,9 @@ export const Toolbar = ({ searchValue, onSearch, onCreatePhone, onEditPhone, onD
             <Button aria-label="Create Phone" onClick={onCreatePhone}>
               <FlexContainer align="center">
                 <PlusCircledIcon color="white" />
-                <Typography size="button" css={{ marginLeft: '$1' }} color="whiteA12">
+                <ToolbarButtonText size="button" color="whiteA12">
                   Create Phone
-                </Typography>
+                </ToolbarButtonText>
               </FlexContainer>
             </Button>
           )}
@@ -54,9 +54,9 @@ export const Toolbar = ({ searchValue, onSearch, onCreatePhone, onEditPhone, onD
             <Button aria-label="Edit Phone" onClick={onEditPhone}>
               <FlexContainer align="center">
                 <Pencil2Icon color="white" />
-                <Typography size="button" css={{ marginLeft: '$1' }} color="whiteA12">
+                <ToolbarButtonText size="button" color="whiteA12">
                   Edit Phone
-                </Typography>
+                </ToolbarButtonText>
               </FlexContainer>
             </Button>
           )}
@@ -64,9 +64,9 @@ export const Toolbar = ({ searchValue, onSearch, onCreatePhone, onEditPhone, onD
             <Button aria-label="Delete Phone" variant="danger" onClick={onDeletePhone}>
               <FlexContainer align="center">
                 <TrashIcon color="white" />
-                <Typography size="button" css={{ marginLeft: '$1' }} color="whiteA12">
+                <ToolbarButtonText size="button" color="whiteA12">
                   Delete Phone
-                </Typography>
+                </ToolbarButtonText>
               </FlexContainer>
             </Button>
           )}
@@ -74,6 +74,7 @@ export const Toolbar = ({ searchValue, onSearch, onCreatePhone, onEditPhone, onD
         {!!onSearch && (
           <FlexContainer align="center" justify="center">
             <TextInput
+              searchInput
               singleLine
               id="searchValue"
               label={'Search phone'}

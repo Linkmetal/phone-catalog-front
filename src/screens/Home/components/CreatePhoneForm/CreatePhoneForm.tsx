@@ -171,6 +171,7 @@ export const CreatePhoneForm = ({ onSuccess, onError }: PhoneListProps) => {
           label="Price"
         />
         <TextInput
+          type="textarea"
           value={values.description || ''}
           onChange={(description) => setValues({ ...values, description })}
           error={errors.description}
@@ -186,8 +187,10 @@ export const CreatePhoneForm = ({ onSuccess, onError }: PhoneListProps) => {
           label="Image"
         />
         <FlexContainer justify="end">
-          <Button type="submit">
-            <Typography color="whiteA12">Submit</Typography>
+          <Button size="large" type="submit">
+            <Typography size="h5" color="whiteA12">
+              Submit
+            </Typography>
           </Button>
         </FlexContainer>
       </form>

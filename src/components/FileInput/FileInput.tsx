@@ -44,6 +44,7 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
             id={id}
             ref={forwardedRef}
             type="file"
+            accept=".png,.jpg"
             onChange={(event) => {
               if (event.target.files) {
                 setFile(event.target?.files[0])

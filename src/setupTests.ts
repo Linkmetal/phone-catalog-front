@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // jest-dom adds custom jest matchers for asserting on DOM nodes.
 // allows you to do things like:
@@ -18,10 +19,8 @@ class ResizeObserver {
     this.cb([{ borderBoxSize: { inlineSize: 0, blockSize: 0 } }])
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   unobserve() {}
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   disconnect() {}
 }
 

@@ -53,7 +53,7 @@ export const Overlay = styled(Dialog.Overlay, {
   justifyContent: 'center',
   alignItems: 'flex-start',
   overflow: 'auto',
-  padding: '$modal 0',
+  padding: '$4',
   zIndex: 100,
 
   '&[data-state="open"]': {
@@ -63,7 +63,7 @@ export const Overlay = styled(Dialog.Overlay, {
 
 export const Content = styled(Dialog.Content, {
   padding: '$9',
-  backgroundColor: '$accentBase',
+  backgroundColor: '$accentBg',
   borderRadius: '$3',
   opacity: 0,
   transform: 'scale(.9) translateY(24px)',

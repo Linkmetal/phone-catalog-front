@@ -2,6 +2,7 @@ import { keyframes, styled } from 'styles/stitches.config'
 
 export const Layout = styled('article', {
   height: '100vh',
+  minHeight: '100vh',
   width: '100vw',
   backgroundColor: '$accentBase',
 })
@@ -156,6 +157,12 @@ export const Button = styled('button', {
         '&:active': {
           backgroundColor: '$dangerText',
         },
+      },
+    },
+    size: {
+      large: {
+        paddingY: '$2',
+        paddingX: '$6',
       },
     },
   },

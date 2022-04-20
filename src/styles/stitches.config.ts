@@ -312,7 +312,7 @@ export const globalStyles = stitchesGlobal({
     fontFamily: '$lato',
     padding: 0,
     margin: 0,
-    backgroundColor: '$background-default',
+    backgroundColor: '$accentBg',
   },
   '@font-face': {
     fontFamily: 'DevIcon',

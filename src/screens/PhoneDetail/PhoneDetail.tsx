@@ -8,7 +8,7 @@ import {
   ShadowInnerIcon,
 } from '@radix-ui/react-icons'
 import { Button, FlexContainer, Img, Layout } from 'styles/common.styles'
-import { DetailField, DetailsGridContainer, GoBackContainer } from './PhoneDetail.styles'
+import { DescriptionField, DetailField, DetailsGridContainer, GoBackContainer } from './PhoneDetail.styles'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { Header } from 'components/Header'
@@ -70,7 +70,7 @@ export const PhoneDetail = () => {
           onDeletePhone={() => setIsDeletePhoneModalOpen(!isDeletePhoneModalOpen)}
         />
         <GoBackContainer justify="start">
-          <Typography as="a" href="/">
+          <Typography css={{ justifySelf: 'flex-start' }} as="a" href="/">
             <FlexContainer>
               <ChevronLeftIcon alignmentBaseline="baseline" />
               Back
@@ -78,33 +78,28 @@ export const PhoneDetail = () => {
           </Typography>
         </GoBackContainer>
         <DetailsGridContainer>
-          <FlexContainer direction="column" css={{ height: '85%', backgroundColor: '$whiteA11' }} justify="start">
+          <FlexContainer
+            direction="column"
+            css={{ backgroundColor: '$accentBase', height: '50%', '@md': { height: '62%' } }}
+            justify="start"
+          >
             <Img
               // TODO: remove this image validation
               src={phone.imageSrc.startsWith('http') ? phone.imageSrc : '/placeholder.png'}
               role="presentation"
               css={{ padding: '$4' }}
             />
-            <DetailField
-              justify="start"
-              direction="column"
-              css={{
-                backgroundColor: '$accentBgHover',
-                width: '100%',
-                height: '50%',
-                padding: '$4',
-              }}
-            >
+            <DescriptionField justify="start" direction="column" css={{}}>
               <Typography css={{ paddingBottom: '$4' }} size="h3">
                 Description:
               </Typography>
               <Typography color="accentTextContrast" size="h5">
                 {phone.description}
               </Typography>
-            </DetailField>
+            </DescriptionField>
           </FlexContainer>
           <FlexContainer
-            css={{ padding: '$8', backgroundColor: '$accentBgHover', height: '85%' }}
+            css={{ gap: '$4', padding: '$8', paddingTop: '0', backgroundColor: '$accentBgHover', height: '50%' }}
             justify="start"
             align="start"
             direction="column"
@@ -196,7 +191,7 @@ export const PhoneDetail = () => {
           }}
         />
       </Modal>
-      <Modal onClose={() => setIsDeletePhoneModalOpen(false)} open={isDeletePhoneModalOpen}>
+      <Modal css={{ margin: '$modal' }} onClose={() => setIsDeletePhoneModalOpen(false)} open={isDeletePhoneModalOpen}>
         <FlexContainer css={{ paddingBottom: '$4' }} direction="column" align="start" justify="spaceBetween">
           <Typography size="h3">Delete Phone</Typography>
           <Typography size="h5" color="dangerText">

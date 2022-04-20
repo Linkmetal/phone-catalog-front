@@ -20,6 +20,60 @@ export const InputWrapper = styled('div', {
   '&:focus': {
     outline: 'none',
   },
+
+  variants: {
+    searchInput: {
+      true: {
+        paddingY: '$1',
+        paddingX: '$4',
+        backgroundColor: 'red',
+      },
+    },
+  },
+})
+
+export const TextArea = styled('textarea', {
+  height: '$10',
+  width: '100%',
+  appearance: 'none',
+  border: 'none',
+  backgroundColor: '$accentBgHover',
+  padding: 0,
+  fontFamily: '$lato',
+
+  fontSize: '$caption',
+  fontWeight: '$semiBold',
+  color: '$accentText',
+
+  '&::placeholder': {
+    color: '$gray11',
+  },
+
+  '&:focus': {
+    outline: 'none',
+  },
+
+  '&:disabled': {
+    color: '$gray1',
+    cursor: 'not-allowed',
+
+    '&::placeholder': {
+      color: '$gray1',
+    },
+  },
+
+  '&:read-only': {
+    color: '$gray1',
+    pointerEvents: 'none',
+
+    '&::placeholder': {
+      color: '$gray1',
+    },
+  },
+
+  '&[type="file"]': {
+    display: 'none',
+  },
 })
 
 export const Input = styled('input', {
