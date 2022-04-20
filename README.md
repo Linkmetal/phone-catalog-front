@@ -2,6 +2,8 @@
 
 [React App](https://create-react-app.dev/) application that host a web to consume the Phone Catalog API
 
+-- [Trello Board](https://trello.com/b/5BVazCM1/phone-catalog) --
+
 It uses Typecript, Jest for testing and the following 3rd party libraries:
 
 - [React Query](https://react-query.tanstack.com/) and [Axios](https://axios-http.com/docs/intro) for data fetching
