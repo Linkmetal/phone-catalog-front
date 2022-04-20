@@ -1,19 +1,21 @@
-import { render, screen } from '@testing-library/react'
+import { ToastMessage, ToastMessageProvider } from 'contexts/ToastContext'
+import { render, screen, waitForElementToBeRemoved } from '@testing-library/react'
 
 import { Toast } from './Toast'
-import { axe } from 'jest-axe'
+import { ToastProvider } from '@radix-ui/react-toast'
+import { ToastViewport } from 'components/Toast/Toast.styles'
 
 describe('Toast', () => {
-  it('renders properly', () => {
-    render(<Toast toastMessage={{ description: '', title: '', variant: 'danger' }} />)
+  it('renders properly', async () => {
+    render(
+      <ToastMessageProvider>
+        <ToastProvider>
+          <Toast toastMessage={{ description: 'asd', title: 'dsa', variant: 'danger', delay: 10000 }} />
+          <ToastViewport />
+        </ToastProvider>
+      </ToastMessageProvider>,
+    )
 
-    expect(screen.getByText('PHONE CATALOG')).toBeInTheDocument()
-  })
-
-  it('does not have basic accessibility issues', async () => {
-    const { container } = render(<Toast toastMessage={{ description: '', title: '', variant: 'danger' }} />)
-    const results = await axe(container)
-
-    expect(results).toHaveNoViolations()
+    expect(await screen.findByText('asd')).toBeInTheDocument()
   })
 })

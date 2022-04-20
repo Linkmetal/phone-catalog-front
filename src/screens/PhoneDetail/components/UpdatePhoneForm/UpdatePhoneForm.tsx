@@ -110,7 +110,7 @@ export const UpdatePhoneForm = ({ phone, onSuccess, onError }: PhoneListProps) =
   return (
     <UpdatePhoneFormRoot css={{ width: '250px' }} direction="column" align="start">
       <Typography css={{ paddingBottom: '$6' }} size="h3">
-        Create Phone
+        Edit Phone
       </Typography>
       <form onSubmit={handleSubmit} style={{ width: '100%' }}>
         <TextInput
@@ -176,7 +176,9 @@ export const UpdatePhoneForm = ({ phone, onSuccess, onError }: PhoneListProps) =
           label="Description"
         />
         <FileInput
-          onFileUpload={(image) => setValues({ ...values, image })}
+          onFileUpload={(image) => {
+            if (image) setValues({ ...values, image })
+          }}
           error={errors.image}
           id="image"
           label="Image"

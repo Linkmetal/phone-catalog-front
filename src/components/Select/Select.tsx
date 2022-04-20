@@ -13,12 +13,14 @@ import {
 } from 'components/Select/Select.styles'
 import { Icon, ItemText, Value } from '@radix-ui/react-select'
 
+import { Button } from 'styles/common.styles'
 import { Typography } from 'components/Typography'
+import { useState } from 'react'
 
 export type SelectProps<T> = {
   id: string
   values: T[]
-  value: T
+  value?: T
   label: string
   placeholder: string
   onChange: (value: string) => void
@@ -26,17 +28,21 @@ export type SelectProps<T> = {
 }
 
 export function Select<T extends string>({ id, values, value, label, placeholder, onChange, error }: SelectProps<T>) {
+  const [open, setOpen] = useState(false)
   return (
     <SelectRoot direction="column" align="start">
-      <Label.Root role="presentation" aria-label={label} asChild htmlFor={id}>
+      <Label.Root role="presentation" asChild htmlFor={id}>
         <Typography size="caption" color="accentTextContrast">
           {label}
         </Typography>
       </Label.Root>
-      <RadixSelectRoot value={''} onValueChange={(value) => onChange(value)}>
-        <Trigger>
-          <Value>{value || placeholder}</Value>
-          <Icon />
+      <RadixSelectRoot open={open} onValueChange={(value) => onChange(value)}>
+        <Trigger asChild onClick={() => setOpen(!open)} aria-label={placeholder}>
+          {/* <Value>{value || placeholder}</Value>
+          <Icon /> */}
+          <Button onClick={() => setOpen(!open)}>
+            <Typography>{value}</Typography>
+          </Button>
         </Trigger>
         <Typography size="caption" color="dangerText" css={{ paddingY: '$2' }}>
           {error}

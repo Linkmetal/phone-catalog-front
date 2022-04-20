@@ -136,7 +136,7 @@ export const CreatePhoneForm = ({ onSuccess, onError }: PhoneListProps) => {
           onChange={(processor) => setValues({ ...values, processor })}
           error={errors.processor}
           id="processor"
-          label="Proccessor"
+          label="Processor"
         />
         <Select
           error={errors.ram || ''}
@@ -178,7 +178,9 @@ export const CreatePhoneForm = ({ onSuccess, onError }: PhoneListProps) => {
           label="Description"
         />
         <FileInput
-          onFileUpload={(image) => setValues({ ...values, image })}
+          onFileUpload={(image) => {
+            if (image) setValues({ ...values, image })
+          }}
           error={errors.image}
           id="image"
           label="Image"

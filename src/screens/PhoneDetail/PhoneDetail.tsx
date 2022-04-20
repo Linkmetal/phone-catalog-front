@@ -28,7 +28,7 @@ export const PhoneDetail = () => {
   const [isDeletePhoneModalOpen, setIsDeletePhoneModalOpen] = useState<boolean>(false)
   const { setToastMessage } = useToastContext()
   const params = useParams()
-  const { phone, refetch: refetchPhone } = useFetchPhoneDetails({ id: params?.id || '' }, { enabled: !!params?.id })
+  const { phone, refetch: refetchPhone } = useFetchPhoneDetails({ id: params?.id || '' })
   const { deletePhone } = useDeletePhone()
   useTitle(`Phone Catalog - ${phone?.name}`)
   const navigate = useNavigate()

@@ -55,9 +55,7 @@ export const Item = styled(RadixSelect.Item, {
   position: 'relative',
   userSelect: 'none',
 
-  '&[data-disabled]': {
-    pointerEvents: 'none',
-  },
+  '&[data-disabled]': {},
 
   '&:focus': {
     backgroundColor: '$accentSolidHover',

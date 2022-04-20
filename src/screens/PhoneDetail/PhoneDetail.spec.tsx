@@ -4,7 +4,10 @@ import { render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { PhoneDetail } from './PhoneDetail'
 import { PhonesRepository } from 'network/repositories/PhonesRepository'
+import { ToastMessageProvider } from 'contexts/ToastContext'
+import { axe } from 'jest-axe'
 import { phonesFixture } from 'test/fixtures/phones'
+import userEvent from '@testing-library/user-event'
 
 describe('PhoneDetail', () => {
   const queryClient = new QueryClient({
@@ -17,41 +20,72 @@ describe('PhoneDetail', () => {
       },
     },
   })
+
   beforeEach(() => {
-    jest
-      .spyOn(PhonesRepository, 'fetch')
-      .mockResolvedValue({ pagination: { offset: 0, pageTake: 9, total: 9 }, data: phonesFixture })
+    jest.spyOn(PhonesRepository, 'details').mockResolvedValue(phonesFixture[0])
   })
 
   it('renders properly', async () => {
     render(
       <MemoryRouter>
         <QueryClientProvider client={queryClient}>
-          <PhoneDetail />
+          <ToastMessageProvider>
+            <PhoneDetail />
+          </ToastMessageProvider>
         </QueryClientProvider>
       </MemoryRouter>,
     )
 
-    expect(screen.getByText('PHONE CATALOG')).toBeInTheDocument()
-    expect(screen.getByText('Filters')).toBeInTheDocument()
-    expect(await screen.findByText('iPhone 7')).toBeInTheDocument()
+    expect(await screen.findByText(phonesFixture[0].name)).toBeInTheDocument()
+    expect(await screen.findByText(phonesFixture[0].description)).toBeInTheDocument()
+    expect(await screen.findByText(phonesFixture[0].color)).toBeInTheDocument()
+    expect(await screen.findByText(phonesFixture[0].manufacturer)).toBeInTheDocument()
+    expect(await screen.findByText(phonesFixture[0].ram)).toBeInTheDocument()
   })
 
-  // TODO: investigate why is not filtering by name, jest fake timers?? https://kentcdodds.com/blog/fix-the-not-wrapped-in-act-warning
-  it.todo('filters by name')
-  // async () => {
-  //   render(
-  //     <MemoryRouter>
-  //       <QueryClientProvider client={queryClient}>
-  //         <PhoneDetail />
-  //       </QueryClientProvider>
-  //     </MemoryRouter>,
-  //   )
+  it('shows update phone form', async () => {
+    render(
+      <MemoryRouter>
+        <QueryClientProvider client={queryClient}>
+          <ToastMessageProvider>
+            <PhoneDetail />
+          </ToastMessageProvider>
+        </QueryClientProvider>
+      </MemoryRouter>,
+    )
 
-  //   userEvent.type(screen.getAllByLabelText('Search phone')[0], 'aaa')
-  //   await wait(1000)
-  //   await waitFor(async () => {
-  //     expect(await screen.findByText('iPhone 7')).not.toBeInTheDocument()
-  //   })
-  // })
+    userEvent.click(screen.getByLabelText('Edit Phone'))
+
+    expect((await screen.findAllByText('Edit Phone')).length).toBe(2)
+  })
+
+  it('shows delete phone form', async () => {
+    render(
+      <MemoryRouter>
+        <QueryClientProvider client={queryClient}>
+          <ToastMessageProvider>
+            <PhoneDetail />
+          </ToastMessageProvider>
+        </QueryClientProvider>
+      </MemoryRouter>,
+    )
+
+    userEvent.click(screen.getByLabelText('Delete Phone'))
+
+    expect((await screen.findAllByText('Delete Phone')).length).toBe(2)
+  })
+
+  it('does not have basic accessibility issues', async () => {
+    const { container } = render(
+      <MemoryRouter>
+        <QueryClientProvider client={queryClient}>
+          <ToastMessageProvider>
+            <PhoneDetail />
+          </ToastMessageProvider>
+        </QueryClientProvider>
+      </MemoryRouter>,
+    )
+    const results = await axe(container)
+    expect(results).toHaveNoViolations()
+  })
 })

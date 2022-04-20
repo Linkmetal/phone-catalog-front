@@ -41,7 +41,7 @@ export const Toolbar = ({ searchValue, onSearch, onCreatePhone, onEditPhone, onD
       <FlexContainer justify="spaceBetween" css={{ height: '100%', width: '100%' }}>
         <FlexContainer css={{ gap: '$4' }} justify="start" align="center">
           {!!onCreatePhone && (
-            <Button onClick={onCreatePhone}>
+            <Button aria-label="Create Phone" onClick={onCreatePhone}>
               <FlexContainer align="center">
                 <PlusCircledIcon color="white" />
                 <Typography size="button" css={{ marginLeft: '$1' }} color="whiteA12">
@@ -51,7 +51,7 @@ export const Toolbar = ({ searchValue, onSearch, onCreatePhone, onEditPhone, onD
             </Button>
           )}
           {!!onEditPhone && (
-            <Button onClick={onEditPhone}>
+            <Button aria-label="Edit Phone" onClick={onEditPhone}>
               <FlexContainer align="center">
                 <Pencil2Icon color="white" />
                 <Typography size="button" css={{ marginLeft: '$1' }} color="whiteA12">
@@ -61,7 +61,7 @@ export const Toolbar = ({ searchValue, onSearch, onCreatePhone, onEditPhone, onD
             </Button>
           )}
           {!!onDeletePhone && (
-            <Button variant="danger" onClick={onDeletePhone}>
+            <Button aria-label="Delete Phone" variant="danger" onClick={onDeletePhone}>
               <FlexContainer align="center">
                 <TrashIcon color="white" />
                 <Typography size="button" css={{ marginLeft: '$1' }} color="whiteA12">

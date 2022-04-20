@@ -10,7 +10,7 @@ import { useUpdateEffect } from 'ahooks'
 export type FileInputProps = {
   id: string
   value?: File
-  onFileUpload?: (value: File) => void
+  onFileUpload: (value: File | null) => void
   disabled?: boolean
   label: string
   error?: string
@@ -20,7 +20,7 @@ export type FileInputProps = {
 }
 
 export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
-  ({ id, label, error, onFileUpload = () => undefined }, forwardedRef) => {
+  ({ id, label, error, onFileUpload }, forwardedRef) => {
     const [file, setFile] = useState<File>()
     const [imageURI, setImageURI] = useState<string>('')
     const reader = new FileReader()
@@ -43,13 +43,13 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
           <Input
             id={id}
             ref={forwardedRef}
+            type="file"
             onChange={(event) => {
               if (event.target.files) {
                 setFile(event.target?.files[0])
                 return onFileUpload(event.target?.files[0])
               }
             }}
-            type="file"
           />
           <>
             {!file && (
@@ -64,7 +64,7 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
             )}
             {file && (
               <FlexContainer css={{ width: '100%' }} justify="start">
-                <Img css={{ height: '$12', width: '50%' }} src={imageURI} />
+                <Img alt="Image preview" css={{ height: '$12', width: '50%' }} src={imageURI} />
                 <Button
                   variant="danger"
                   type="button"
@@ -72,6 +72,7 @@ export const FileInput = forwardRef<HTMLInputElement, FileInputProps>(
                     const input = document.querySelector(`#${id}`) as HTMLInputElement
                     input.files = null
                     setFile(undefined)
+                    onFileUpload(null)
                   }}
                 >
                   <Typography color="whiteA12">Delete</Typography>
