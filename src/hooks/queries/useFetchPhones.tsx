@@ -1,6 +1,8 @@
 import { Phone, PhoneManufacturer } from 'types/phone'
 import { UseQueryOptions, useQuery } from 'react-query'
 
+import { ApiError } from 'types/Errors'
+import { AxiosError } from 'axios'
 import { PaginatedResponse } from 'types/PaginatedResponse'
 import { PhonesRepository } from 'network/repositories/PhonesRepository'
 
@@ -18,11 +20,11 @@ export type FetchPhonesParams = {
 export namespace FetchPhones {
   export type Params = FetchPhonesParams
   export type Response = PaginatedResponse<Phone[]>
-  export type Error = unknown
+  export type Error = AxiosError<ApiError>
   export type Options = UseQueryOptions<Response, Error>
 }
 
-const createKey = (params: FetchPhones.Params = {}) => ['fetch-students', JSON.stringify(params)]
+const createKey = (params: FetchPhones.Params = {}) => ['fetch-phones', JSON.stringify(params)]
 
 const queryFetcher = (params?: FetchPhones.Params) => async () => {
   return await PhonesRepository.fetch(params)

@@ -1,21 +1,26 @@
 import { GridContainer, HomeRoot } from './Home.styles'
 import { Phone, PhoneFiltersParams } from 'types/phone'
 
-import Header from 'components/Header/Header'
+import { CreatePhoneForm } from 'screens/Home/components/CreatePhoneForm'
+import { Header } from 'components/Header'
 import { Layout } from 'styles/common.styles'
+import { Modal } from 'components/Modal'
 import { PhoneFilters } from './components/PhoneFilters'
 import { PhoneList } from './components/PhoneList'
 import { Toolbar } from 'components/Toolbar'
-import { darkTheme } from 'styles/stitches.config'
 import { useFetchPhones } from 'hooks/queries/useFetchPhones'
 import { useState } from 'react'
+import { useTitle } from 'ahooks'
+import { useToastContext } from 'contexts/ToastContext'
 
 const PAGE_SIZE = 9
 
 export const Home = () => {
+  useTitle('Phone Catalog - List')
+  const { setToastMessage } = useToastContext()
   const [page, setPage] = useState(1)
   const [phoneList, setPhoneList] = useState<Phone[]>([])
-  const [isDarkThemeSetted, setIsDarkThemeSetted] = useState<boolean>(false)
+  const [isCreatePhoneModalOpen, setIsCreatePhoneModalOpen] = useState<boolean>(false)
   const [filters, setFilters] = useState<PhoneFiltersParams>({
     manufacturer: [],
     ram: [],
@@ -29,7 +34,11 @@ export const Home = () => {
     setFilters({ ...filters })
   }
 
-  const { phones, isLoading } = useFetchPhones(
+  const {
+    phones,
+    isLoading,
+    refetch: refetchPhones,
+  } = useFetchPhones(
     { ...filters, pageTake: PAGE_SIZE, offset: PAGE_SIZE * (page - 1) },
     {
       onSuccess: (result) => {
@@ -42,24 +51,21 @@ export const Home = () => {
   )
 
   const resetList = () => {
-    console.log('resetting list', filters)
-
     setPhoneList([])
     setPage(1)
   }
 
   return (
-    <HomeRoot className={isDarkThemeSetted ? darkTheme : undefined}>
+    <HomeRoot>
       <Layout>
         <Header />
         <Toolbar
-          isDarkThemeSetted={isDarkThemeSetted}
-          onThemeChange={setIsDarkThemeSetted}
           onSearch={(searchQuery) => {
             resetList()
             setFilters({ ...filters, searchQuery })
           }}
           searchValue={filters.searchQuery}
+          onCreatePhone={() => setIsCreatePhoneModalOpen(!isCreatePhoneModalOpen)}
         />
         <GridContainer css={{ height: '85%' }}>
           <PhoneFilters
@@ -79,6 +85,27 @@ export const Home = () => {
           )}
         </GridContainer>
       </Layout>
+
+      <Modal onClose={() => setIsCreatePhoneModalOpen(false)} open={isCreatePhoneModalOpen}>
+        <CreatePhoneForm
+          onError={(error) => {
+            setToastMessage({
+              title: error.error,
+              description: `Status: ${error.statusCode} - ${error.message}`,
+              variant: 'danger',
+            })
+          }}
+          onSuccess={() => {
+            setToastMessage({
+              title: 'Success',
+              description: 'Phone created successfully',
+              variant: 'success',
+            })
+            setIsCreatePhoneModalOpen(false)
+            refetchPhones()
+          }}
+        />
+      </Modal>
     </HomeRoot>
   )
 }

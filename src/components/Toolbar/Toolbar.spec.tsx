@@ -9,52 +9,88 @@ describe('Toolbar', () => {
   it('renders properly', () => {
     render(
       <MemoryRouter>
-        <Toolbar isDarkThemeSetted={false} onThemeChange={() => undefined} searchValue="" onSearch={() => undefined} />,
+        <Toolbar searchValue="" onSearch={() => undefined} />,
       </MemoryRouter>,
     )
 
     expect(screen.getByText('Search phone')).toBeInTheDocument()
   })
 
-  it('calls onThemeChange on theme toggle click', () => {
-    const onThemeChangeMock = jest.fn()
+  it('calls onCreatePhone on Create Phone buttonClick', () => {
+    const onCreatePhoneMock = jest.fn()
     render(
       <MemoryRouter>
-        <Toolbar
-          isDarkThemeSetted={false}
-          onThemeChange={onThemeChangeMock}
-          searchValue=""
-          onSearch={() => undefined}
-        />
+        <Toolbar searchValue="" onCreatePhone={onCreatePhoneMock} onSearch={() => undefined} />,
+      </MemoryRouter>,
+    )
+
+    userEvent.click(screen.getByText('Create Phone'))
+
+    expect(onCreatePhoneMock).toHaveBeenCalledTimes(1)
+  })
+
+  it('calls onEditPhone on Edit Phone buttonClick', () => {
+    const onEditPhoneMock = jest.fn()
+    render(
+      <MemoryRouter>
+        <Toolbar searchValue="" onEditPhone={onEditPhoneMock} onSearch={() => undefined} />,
+      </MemoryRouter>,
+    )
+
+    userEvent.click(screen.getByText('Edit Phone'))
+
+    expect(onEditPhoneMock).toHaveBeenCalledTimes(1)
+  })
+
+  it('calls onSearch on Delete Phone buttonClick', () => {
+    const onDeletePhoneMock = jest.fn()
+    render(
+      <MemoryRouter>
+        <Toolbar searchValue="" onDeletePhone={onDeletePhoneMock} onSearch={() => undefined} />,
+      </MemoryRouter>,
+    )
+
+    userEvent.click(screen.getByText('Delete Phone'))
+
+    expect(onDeletePhoneMock).toHaveBeenCalledTimes(1)
+  })
+
+  it('calls onSearch on searchBar input', async () => {
+    const onSearchMock = jest.fn()
+    render(
+      <MemoryRouter>
+        <Toolbar searchValue="" onSearch={onSearchMock} />,
+      </MemoryRouter>,
+    )
+
+    userEvent.type(screen.getAllByLabelText('Search phone')[0], 'a')
+
+    await waitFor(() => {
+      expect(onSearchMock).toHaveBeenCalledTimes(1)
+    })
+  })
+
+  it('toggle class darkTheme on Toggle button click', async () => {
+    const onSearchMock = jest.fn()
+    render(
+      <MemoryRouter>
+        <div data-testid="container" id="darkThemeContainer">
+          <Toolbar searchValue="" onSearch={onSearchMock} />,
+        </div>
       </MemoryRouter>,
     )
 
     userEvent.click(screen.getByLabelText('Toggle dark theme'))
 
-    expect(onThemeChangeMock).toHaveBeenCalledWith(true)
-  })
-
-  it('calls onThemeChange on theme toggle click', async () => {
-    const onSearchMock = jest.fn()
-    render(
-      <MemoryRouter>
-        <Toolbar isDarkThemeSetted={false} onThemeChange={() => undefined} searchValue="" onSearch={onSearchMock} />
-      </MemoryRouter>,
-    )
-
-    userEvent.type(screen.getAllByLabelText('Search phone')[0], 'asd')
-
     await waitFor(() => {
-      expect(onSearchMock).toHaveBeenCalledWith('asd')
+      expect(screen.getByTestId('container')).toHaveClass('t-kvInUK', { exact: true })
     })
   })
-
-  it.todo('calls onLogin on login click')
 
   it('does not have basic accessibility issues', async () => {
     const { container } = render(
       <MemoryRouter>
-        <Toolbar isDarkThemeSetted={false} onThemeChange={() => undefined} searchValue="" onSearch={() => undefined} />,
+        <Toolbar searchValue="" onSearch={() => undefined} />,
       </MemoryRouter>,
     )
     const results = await axe(container)

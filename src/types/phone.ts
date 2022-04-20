@@ -7,7 +7,7 @@ export type Phone = {
   description: string
   color: string
   price: number
-  imageFileName: string
+  imageSrc: string
   screen: string
   processor: string
   ram: PhoneRamMemory
