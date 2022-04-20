@@ -1,7 +1,7 @@
-import { ToastMessage, ToastMessageProvider } from 'contexts/ToastContext'
-import { render, screen, waitForElementToBeRemoved } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 
 import { Toast } from './Toast'
+import { ToastMessageProvider } from 'contexts/ToastContext'
 import { ToastProvider } from '@radix-ui/react-toast'
 import { ToastViewport } from 'components/Toast/Toast.styles'
 

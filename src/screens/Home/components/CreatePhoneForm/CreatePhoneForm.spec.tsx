@@ -2,10 +2,7 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import { render, screen } from '@testing-library/react'
 
 import { CreatePhoneForm } from './CreatePhoneForm'
-import { PhonesRepository } from 'network/repositories/PhonesRepository'
 import { axe } from 'jest-axe'
-import { phonesFixture } from 'test/fixtures/phones'
-import userEvent from '@testing-library/user-event'
 
 describe('CreatePhoneForm', () => {
   const queryClient = new QueryClient({
