@@ -74,6 +74,7 @@ export const Toolbar = ({ searchValue, onSearch, onCreatePhone, onEditPhone, onD
         {!!onSearch && (
           <FlexContainer align="center" justify="center">
             <TextInput
+              searchInput
               singleLine
               id="searchValue"
               label={'Search phone'}

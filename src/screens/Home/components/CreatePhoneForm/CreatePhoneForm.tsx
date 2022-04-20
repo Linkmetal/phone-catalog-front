@@ -171,6 +171,7 @@ export const CreatePhoneForm = ({ onSuccess, onError }: PhoneListProps) => {
           label="Price"
         />
         <TextInput
+          type="textarea"
           value={values.description || ''}
           onChange={(description) => setValues({ ...values, description })}
           error={errors.description}
