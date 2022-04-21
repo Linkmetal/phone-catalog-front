@@ -6,7 +6,7 @@ export const PhoneDetailRoot = styled('div', {
 })
 
 export const DetailsGridContainer = styled('section', {
-  backgroundColor: '$accentBgHover',
+  backgroundColor: '$accentBg',
   display: 'flex',
   flexDirection: 'column',
   gridGap: '$4',
@@ -30,7 +30,7 @@ export const DetailsGridContainer = styled('section', {
 
 export const GoBackContainer = styled(FlexContainer, {
   padding: '$2',
-  backgroundColor: '$accentBgHover',
+  backgroundColor: '$accentBg',
   '& > svg': { color: '$accentText' },
 })
 
@@ -45,7 +45,7 @@ export const DetailField = styled(FlexContainer, {
 })
 
 export const DescriptionField = styled(DetailField, {
-  backgroundColor: '$accentBgHover',
+  backgroundColor: '$accentBg',
   width: '100%',
   padding: '$4',
 

@@ -102,6 +102,7 @@ export const Home = () => {
               variant: 'success',
             })
             setIsCreatePhoneModalOpen(false)
+            resetList()
             refetchPhones()
           }}
         />

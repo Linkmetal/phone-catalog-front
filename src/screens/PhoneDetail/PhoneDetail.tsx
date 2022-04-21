@@ -99,7 +99,7 @@ export const PhoneDetail = () => {
             </DescriptionField>
           </FlexContainer>
           <FlexContainer
-            css={{ gap: '$4', padding: '$8', paddingTop: '0', backgroundColor: '$accentBgHover', height: '50%' }}
+            css={{ gap: '$4', padding: '$8', paddingTop: '0', backgroundColor: '$accentBg', height: '50%' }}
             justify="start"
             align="start"
             direction="column"

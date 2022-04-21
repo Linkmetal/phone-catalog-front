@@ -4,7 +4,7 @@ export const Layout = styled('article', {
   height: '100vh',
   minHeight: '100vh',
   width: '100vw',
-  backgroundColor: '$accentBase',
+  backgroundColor: '$accentBg',
 })
 
 export const FlexContainer = styled('div', {
