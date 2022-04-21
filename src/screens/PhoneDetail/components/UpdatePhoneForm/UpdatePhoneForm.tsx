@@ -174,6 +174,7 @@ export const UpdatePhoneForm = ({ phone, onSuccess, onError }: PhoneListProps) =
           error={errors.description}
           id="description"
           label="Description"
+          type="textarea"
         />
         <FileInput
           onFileUpload={(image) => {
